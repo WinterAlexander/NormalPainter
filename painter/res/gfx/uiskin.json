@@ -1,0 +1,986 @@
+//
+// Skin used by the whole game
+//
+// Since fonts are dynamic,
+//@Suppress(NonExistingResourceInAlias)
+//
+// Since we added custom fields to support InlineTint
+// @Suppress(NonExistingField)
+{
+	net.jumpai.util.ui.skin.DynamicFont: {
+		baloo-huge: {
+			family: fonts/baloo
+			size: 107
+		}
+
+		baloo-gigantic: {
+			family: fonts/baloo
+			size: 90
+		}
+
+		baloo-giant: {
+			family: fonts/baloo
+			size: 60
+		}
+
+		baloo-big: {
+			family: fonts/baloo
+			size: 50
+		}
+
+		baloo-large: {
+			family: fonts/baloo
+			size: 40
+		}
+
+		baloo-medium: {
+			family: fonts/baloo
+			size: 30
+		}
+
+		baloo-semismall: {
+			family: fonts/baloo
+			size: 26
+		}
+
+		baloo-small: {
+			family: fonts/baloo
+			size: 22
+		}
+
+		baloo-smaller: {
+			family: fonts/baloo
+			size: 20
+		}
+
+		baloo-tiny: {
+			family: fonts/baloo
+			size: 18
+		}
+
+		baloo-minuscule: {
+			family: fonts/baloo
+			size: 14
+		}
+	}
+
+	com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable: {
+		white-slider-knob: {
+			region:  white-slider-knob-unscaled
+			minWidth: 20
+			minHeight: 20
+		}
+
+		actorhandle-container-right-white: {
+			region: actorhandle-container-unscaled
+			minWidth: 30
+			minHeight: 100
+		}
+
+		actorhandle-grip-right-white: {
+			region: actorhandle-grip-unscaled
+			minWidth: 30
+			minHeight: 100
+		}
+
+		checkmark: {
+			region: checkmark-unscaled
+			minWidth: 30
+			minHeight: 30
+		}
+
+		cross: {
+			region: cross-unscaled
+			minWidth: 30
+			minHeight: 30
+		}
+
+		threedots: {
+			region: threedots-unscaled
+			minWidth: 30
+			minHeight: 30
+		}
+
+		settings-icon: {
+			region: settings-icon-unscaled
+			minWidth: 50
+			minHeight: 50
+		}
+
+		xpbar-separator-unpadded: {
+			region: xpbar-separator-unscaled
+			minWidth: 32
+			minHeight: 40
+		}
+
+		xpbar-small-separator-unpadded: {
+			region: xpbar-separator-unscaled
+			minWidth: 13
+			minHeight: 16
+		}
+	}
+
+	net.jumpai.util.ui.drawable.RotatedTextureRegionDrawable: {
+		actorhandle-container-top-white: {
+			region: actorhandle-container-unscaled
+			minWidth: 100
+			minHeight: 30
+			angle: 90
+		}
+
+		actorhandle-grip-top-white: {
+			region: actorhandle-grip-unscaled
+			minWidth: 100
+			minHeight: 30
+			angle: 90
+		}
+	}
+
+	net.jumpai.util.ui.drawable.PaddedDrawable: {
+		xpbar-separator: {
+			drawable: xpbar-separator-unpadded
+			padLeft: 12
+			padRight: 12
+		}
+
+		xpbar-small-separator: {
+			drawable: xpbar-small-separator-unpadded
+			padLeft: 5
+			padRight: 5
+		}
+	}
+
+	com.badlogic.gdx.scenes.scene2d.utils.NinePatchDrawable: {
+		white-slider: {
+			patch: white-slider-unscaled
+			minWidth: 8
+			minHeight: 8
+		}
+
+		square-border-white: {
+			patch: square-border-unscaled
+			minWidth: 20
+			minHeight: 20
+		}
+
+		square-content-white: {
+			patch: square-content-unscaled
+			minWidth: 20
+			minHeight: 20
+		}
+
+		flat-roundrect-20-white: {
+			patch: flat-roundrect-20-unscaled
+			minWidth: 20
+			minHeight: 20
+		}
+
+		flat-borderedroundrect-20-white: {
+			patch: flat-borderedroundrect-20-unscaled
+			minWidth: 20
+			minHeight: 20
+		}
+
+		flat-borderonlyroundrect-20-white: {
+			patch: flat-borderonlyroundrect-20-unscaled
+			minWidth: 20
+			minHeight: 20
+		}
+
+		flat-borderedroundrect-50-white: {
+			patch: flat-borderedroundrect-50-unscaled
+			minWidth: 50
+			minHeight: 50
+		}
+
+		button-gray: {
+			patch: button-unscaled
+			minWidth: 40
+			minHeight: 40
+		}
+
+		xpbar-outer-gray: {
+			patch: xpbar-outer-unscaled
+			minWidth: 60
+			minHeight: 60
+		}
+
+		xpbar-inner-left-gray: {
+			patch: xpbar-inner-left-unscaled
+			minWidth: 20
+			minHeight: 40
+		}
+
+		xpbar-inner-right-gray: {
+			patch: xpbar-inner-right-unscaled
+			minWidth: 20
+			minHeight: 40
+		}
+
+		xpbar-inner-full-gray: {
+			patch: xpbar-inner-full-unscaled
+			minWidth: 40
+			minHeight: 40
+		}
+
+		xpbar-small-outer-gray: {
+			patch: xpbar-outer-unscaled
+			minWidth: 24
+			minHeight: 24
+		}
+
+		xpbar-small-inner-left-gray: {
+			patch: xpbar-inner-left-unscaled
+			minWidth: 8
+			minHeight: 16
+		}
+
+		xpbar-small-inner-right-gray: {
+			patch: xpbar-inner-right-unscaled
+			minWidth: 8
+			minHeight: 16
+		}
+
+		xpbar-small-inner-full-gray: {
+			patch: xpbar-inner-full-unscaled
+			minWidth: 16
+			minHeight: 16
+		}
+	}
+
+	com.badlogic.gdx.graphics.Color: {
+		alpha: { hex: "#000000" }
+		beta: { hex: "#1111AA" }
+		gamma: { hex: "#00FF00" }
+		delta: { hex: "#FF0000" }
+		omega: { hex: "#FFFF00" }
+
+		white: { r: 1, g: 1, b: 1, a: 1 }
+		darkgray: { r: 0.3, g: 0.3, b: 0.3, a: 1 }
+		gray: { r: 0.5, g: 0.5, b: 0.5, a: 1 }
+		lightgray: { r: 0.7, g: 0.7, b: 0.7, a: 1 }
+		black: { r: 0, g: 0, b: 0, a: 1 }
+
+		hover-dim: { hex: "#CCCCCCFF" }
+		press-dim: { hex: "#AAAAAAFF" }
+		disabled-dim: { hex: "#FFFFFFAA" }
+	}
+
+	net.jumpai.util.ui.drawable.TintedDrawable: {
+		alpha: { drawable: white, color: alpha }
+		beta: { drawable: white, color: beta }
+		gamma: { drawable: white, color: gamma }
+		delta: { drawable: white, color: delta }
+		omega: { drawable: white, color: omega }
+
+		alpha-verytransparent: { drawable: alpha, color: { a: 0.3, r: 1, g: 1, b: 1 }}
+		beta-verytransparent: { drawable: beta, color: { a: 0.3, r: 1, g: 1, b: 1 }}
+		gamma-verytransparent: { drawable: gamma, color: { a: 0.3, r: 1, g: 1, b: 1 }}
+		delta-verytransparent: { drawable: delta, color: { a: 0.3, r: 1, g: 1, b: 1 }}
+		omega-verytransparent: { drawable: omega, color: { a: 0.3, r: 1, g: 1, b: 1 }}
+
+		alpha-transparent: { drawable: alpha, color: { a: 0.5, r: 1, g: 1, b: 1 }}
+		beta-transparent: { drawable: beta, color: { a: 0.5, r: 1, g: 1, b: 1 }}
+		gamma-transparent: { drawable: gamma, color: { a: 0.5, r: 1, g: 1, b: 1 }}
+		delta-transparent: { drawable: delta, color: { a: 0.5, r: 1, g: 1, b: 1 }}
+		omega-transparent: { drawable: omega, color: { a: 0.5, r: 1, g: 1, b: 1 }}
+
+		alpha-slightlytransparent: { drawable: alpha, color: { a: 0.7, r: 1, g: 1, b: 1 }}
+		beta-slightlytransparent: { drawable: beta, color: { a: 0.7, r: 1, g: 1, b: 1 }}
+		gamma-slightlytransparent: { drawable: gamma, color: { a: 0.7, r: 1, g: 1, b: 1 }}
+		delta-slightlytransparent: { drawable: delta, color: { a: 0.7, r: 1, g: 1, b: 1 }}
+		omega-slightlytransparent: { drawable: omega, color: { a: 0.7, r: 1, g: 1, b: 1 }}
+
+		square-content-alpha: {drawable: square-content-white, color: alpha }
+		square-content-beta: { drawable: square-content-white, color: beta }
+		square-content-gamma: { drawable: square-content-white, color: gamma }
+		square-content-delta: { drawable: square-content-white, color: delta }
+		square-content-omega: { drawable: square-content-white,	color: omega }
+
+		flat-roundrect-20-alpha: { drawable: flat-roundrect-20-white, color: alpha }
+		flat-roundrect-20-beta: { drawable: flat-roundrect-20-white, color: beta }
+		flat-roundrect-20-gamma: { drawable: flat-roundrect-20-white, color: gamma }
+		flat-roundrect-20-delta: { drawable: flat-roundrect-20-white, color: delta }
+		flat-roundrect-20-omega: { drawable: flat-roundrect-20-white, color: omega }
+
+		flat-roundrect-20-alpha-transparent: { drawable: flat-roundrect-20-alpha, color: { a: 0.5, r: 1, g: 1, b: 1 } }
+		flat-roundrect-20-beta-transparent: { drawable: flat-roundrect-20-beta, color: { a: 0.5, r: 1, g: 1, b: 1 } }
+		flat-roundrect-20-gamma-transparent: { drawable: flat-roundrect-20-gamma, color: { a: 0.5, r: 1, g: 1, b: 1 } }
+		flat-roundrect-20-delta-transparent: { drawable: flat-roundrect-20-delta, color: { a: 0.5, r: 1, g: 1, b: 1 } }
+		flat-roundrect-20-omega-transparent: { drawable: flat-roundrect-20-omega, color: { a: 0.5, r: 1, g: 1, b: 1 } }
+
+		flat-roundrect-20-alpha-slightlytransparent: { drawable: flat-roundrect-20-alpha, color: { a: 0.7, r: 1, g: 1, b: 1 } }
+		flat-roundrect-20-beta-slightlytransparent: { drawable: flat-roundrect-20-beta, color: { a: 0.7, r: 1, g: 1, b: 1 } }
+		flat-roundrect-20-gamma-slightlytransparent: { drawable: flat-roundrect-20-gamma, color: { a: 0.7, r: 1, g: 1, b: 1 } }
+		flat-roundrect-20-delta-slightlytransparent: { drawable: flat-roundrect-20-delta, color: { a: 0.7, r: 1, g: 1, b: 1 } }
+		flat-roundrect-20-omega-slightlytransparent: { drawable: flat-roundrect-20-omega, color: { a: 0.7, r: 1, g: 1, b: 1 } }
+
+		flat-roundrect-20-white-verytransparent: { drawable: flat-roundrect-20-white, color: { a: 0.3, r: 1, g: 1, b: 1 } }
+		flat-roundrect-20-white-transparent: { drawable: flat-roundrect-20-white, color: { a: 0.5, r: 1, g: 1, b: 1 } }
+		flat-roundrect-20-white-slightlytransparent: { drawable: flat-roundrect-20-white, color: { a: 0.7, r: 1, g: 1, b: 1 } }
+
+		flat-borderedroundrect-20-alpha: { drawable: flat-borderedroundrect-20-white, color: alpha }
+		flat-borderedroundrect-20-beta: { drawable: flat-borderedroundrect-20-white, color: beta }
+		flat-borderedroundrect-20-gamma: { drawable: flat-borderedroundrect-20-white, color: gamma }
+		flat-borderedroundrect-20-delta: { drawable: flat-borderedroundrect-20-white, color: delta }
+		flat-borderedroundrect-20-omega: { drawable: flat-borderedroundrect-20-white, color: omega }
+
+		flat-borderedroundrect-20-alpha-verytransparent: { drawable: flat-borderedroundrect-20-alpha, color: { a: 0.3, r: 1, g: 1, b: 1 } }
+		flat-borderedroundrect-20-beta-verytransparent: { drawable: flat-borderedroundrect-20-beta, color: { a: 0.3, r: 1, g: 1, b: 1 } }
+		flat-borderedroundrect-20-gamma-verytransparent: { drawable: flat-borderedroundrect-20-gamma, color: { a: 0.3, r: 1, g: 1, b: 1 } }
+		flat-borderedroundrect-20-delta-verytransparent: { drawable: flat-borderedroundrect-20-delta, color: { a: 0.3, r: 1, g: 1, b: 1 } }
+		flat-borderedroundrect-20-omega-verytransparent: { drawable: flat-borderedroundrect-20-omega, color: { a: 0.3, r: 1, g: 1, b: 1 } }
+
+		flat-borderedroundrect-20-alpha-transparent: { drawable: flat-borderedroundrect-20-alpha, color: { a: 0.5, r: 1, g: 1, b: 1 } }
+		flat-borderedroundrect-20-beta-transparent: { drawable: flat-borderedroundrect-20-beta, color: { a: 0.5, r: 1, g: 1, b: 1 } }
+		flat-borderedroundrect-20-gamma-transparent: { drawable: flat-borderedroundrect-20-gamma, color: { a: 0.5, r: 1, g: 1, b: 1 } }
+		flat-borderedroundrect-20-delta-transparent: { drawable: flat-borderedroundrect-20-delta, color: { a: 0.5, r: 1, g: 1, b: 1 } }
+		flat-borderedroundrect-20-omega-transparent: { drawable: flat-borderedroundrect-20-omega, color: { a: 0.5, r: 1, g: 1, b: 1 } }
+
+		flat-borderedroundrect-20-alpha-slightlytransparent: { drawable: flat-borderedroundrect-20-alpha, color: { a: 0.7, r: 1, g: 1, b: 1 } }
+		flat-borderedroundrect-20-beta-slightlytransparent: { drawable: flat-borderedroundrect-20-beta, color: { a: 0.7, r: 1, g: 1, b: 1 } }
+		flat-borderedroundrect-20-gamma-slightlytransparent: { drawable: flat-borderedroundrect-20-gamma, color: { a: 0.7, r: 1, g: 1, b: 1 } }
+		flat-borderedroundrect-20-delta-slightlytransparent: { drawable: flat-borderedroundrect-20-delta, color: { a: 0.7, r: 1, g: 1, b: 1 } }
+		flat-borderedroundrect-20-omega-slightlytransparent: { drawable: flat-borderedroundrect-20-omega, color: { a: 0.7, r: 1, g: 1, b: 1 } }
+
+		flat-borderedroundrect-20-white-verytransparent: { drawable: flat-borderedroundrect-20-white, color: { a: 0.3, r: 1, g: 1, b: 1 } }
+		flat-borderedroundrect-20-white-transparent: { drawable: flat-borderedroundrect-20-white, color: { a: 0.5, r: 1, g: 1, b: 1 } }
+		flat-borderedroundrect-20-white-slightlytransparent: { drawable: flat-borderedroundrect-20-white, color: { a: 0.7, r: 1, g: 1, b: 1 } }
+
+		flat-borderedroundrect-20-lightgray: { drawable: flat-borderedroundrect-20-white, color: lightgray }
+
+		flat-borderedroundrect-20-gray: { drawable: flat-borderedroundrect-20-white, color: gray }
+
+		flat-borderonlyroundrect-20-alpha: { drawable: flat-borderonlyroundrect-20-white, color: alpha }
+		flat-borderonlyroundrect-20-beta: { drawable: flat-borderonlyroundrect-20-white, color: beta }
+		flat-borderonlyroundrect-20-gamma: { drawable: flat-borderonlyroundrect-20-white, color: gamma }
+		flat-borderonlyroundrect-20-delta: { drawable: flat-borderonlyroundrect-20-white, color: delta }
+		flat-borderonlyroundrect-20-omega: { drawable: flat-borderonlyroundrect-20-white, color: omega }
+
+		flat-borderonlyroundrect-20-gray: { drawable: flat-borderonlyroundrect-20-white, color: gray }
+
+		flat-borderedroundrect-50-alpha: { drawable: flat-borderedroundrect-50-white, color: alpha }
+		flat-borderedroundrect-50-beta: { drawable: flat-borderedroundrect-50-white, color: beta }
+		flat-borderedroundrect-50-gamma: { drawable: flat-borderedroundrect-50-white, color: gamma }
+		flat-borderedroundrect-50-delta: { drawable: flat-borderedroundrect-50-white, color: delta }
+		flat-borderedroundrect-50-omega: { drawable: flat-borderedroundrect-50-white, color: omega }
+
+		flat-borderedroundrect-50-alpha-transparent: { drawable: flat-borderedroundrect-50-alpha, color: { a: 0.5, r: 1, g: 1, b: 1 } }
+		flat-borderedroundrect-50-beta-transparent: { drawable: flat-borderedroundrect-50-beta, color: { a: 0.5, r: 1, g: 1, b: 1 } }
+		flat-borderedroundrect-50-gamma-transparent: { drawable: flat-borderedroundrect-50-gamma, color: { a: 0.5, r: 1, g: 1, b: 1 } }
+		flat-borderedroundrect-50-delta-transparent: { drawable: flat-borderedroundrect-50-delta, color: { a: 0.5, r: 1, g: 1, b: 1 } }
+		flat-borderedroundrect-50-omega-transparent: { drawable: flat-borderedroundrect-50-omega, color: { a: 0.5, r: 1, g: 1, b: 1 } }
+
+		button-alpha: { drawable: button-gray, color: alpha, shader-tint: true }
+		button-beta: { drawable: button-gray, color: beta, shader-tint: true }
+		button-gamma: { drawable: button-gray, color: gamma, shader-tint: true }
+		button-delta: { drawable: button-gray, color: delta, shader-tint: true }
+		button-omega: { drawable: button-gray, color: omega, shader-tint: true }
+		button-white: { drawable: button-gray, color: white, shader-tint: true }
+
+		actorhandle-container-right-alpha: { drawable: actorhandle-container-right-white, color: alpha }
+		actorhandle-container-right-gamma: { drawable: actorhandle-container-right-white, color: gamma }
+
+		alpha-slider: { drawable: white-slider, color: alpha }
+		beta-slider: { drawable: white-slider, color: beta }
+		gamma-slider: { drawable: white-slider, color: gamma }
+		delta-slider: { drawable: white-slider, color: delta }
+		omega-slider: { drawable: white-slider, color: omega }
+
+		alpha-section-open: { drawable: section-open, color: alpha }
+		alpha-section-close: { drawable: section-close, color: alpha }
+
+		square-border-gamma: { drawable: square-border-white, color: gamma }
+		square-border-delta: { drawable: square-border-white, color: delta }
+
+		xpbar-outer-alpha: { drawable: xpbar-outer-gray, color: alpha, shader-tint: true  }
+		xpbar-outer-gamma: { drawable: xpbar-outer-gray, color: gamma, shader-tint: true  }
+		xpbar-outer-omega: { drawable: xpbar-outer-gray, color: omega, shader-tint: true  }
+		xpbar-inner-left-beta: { drawable: xpbar-inner-left-gray, color: beta, shader-tint: true  }
+		xpbar-inner-right-gamma: { drawable: xpbar-inner-right-gray, color: gamma, shader-tint: true  }
+		xpbar-inner-full-beta: { drawable: xpbar-inner-full-gray, color: beta, shader-tint: true  }
+		xpbar-inner-full-gamma: { drawable: xpbar-inner-full-gray, color: gamma, shader-tint: true  }
+
+		xpbar-small-outer-alpha: { drawable: xpbar-small-outer-gray, color: alpha, shader-tint: true  }
+		xpbar-small-outer-gamma: { drawable: xpbar-small-outer-gray, color: gamma, shader-tint: true  }
+		xpbar-small-outer-omega: { drawable: xpbar-small-outer-gray, color: omega, shader-tint: true  }
+		xpbar-small-inner-left-beta: { drawable: xpbar-small-inner-left-gray, color: beta, shader-tint: true  }
+		xpbar-small-inner-right-gamma: { drawable: xpbar-small-inner-right-gray, color: gamma, shader-tint: true  }
+		xpbar-small-inner-full-beta: { drawable: xpbar-small-inner-full-gray, color: beta, shader-tint: true  }
+		xpbar-small-inner-full-gamma: { drawable: xpbar-small-inner-full-gray, color: gamma, shader-tint: true  }
+	}
+
+	net.jumpai.util.ui.drawable.TintedDrawable: {
+
+		darker-alpha-slider: { drawable: alpha-slider, color: { a: 1, r: 0.6, g: 0.6, b: 0.6 } }
+	}
+
+	net.jumpai.util.ui.drawable.MultiDrawable: {
+
+		square-alpha: { drawables: [ square-content-alpha, square-border-white ] }
+		square-beta: { drawables: [ square-content-beta, square-border-white ] }
+		square-gamma: { drawables: [ square-content-gamma, square-border-white ] }
+		square-delta: { drawables: [ square-content-delta, square-border-white ] }
+		square-omega: { drawables: [ square-content-omega, square-border-white ] }
+
+		square-alpha-border-gamma: { drawables: [ square-content-alpha, square-border-gamma ] }
+		square-alpha-border-delta: { drawables: [ square-content-alpha, square-border-delta ] }
+
+		actorhandle-right-alpha: { drawables: [ actorhandle-container-right-alpha, actorhandle-grip-right-white ] }
+		actorhandle-right-gamma: { drawables: [ actorhandle-container-right-gamma, actorhandle-grip-right-white ] }
+	}
+
+	com.badlogic.gdx.scenes.scene2d.ui.Button$ButtonStyle: {
+		default: {
+			up: flat-borderedroundrect-20-gamma
+			!overTint: { base: up, color: hover-dim }
+			!downTint: { base: up, color: press-dim }
+			!disabledTint: { base: up, color: disabled-dim }
+		}
+
+		customizer-box: {
+			up: flat-borderedroundrect-20-white-transparent
+			over: flat-borderedroundrect-20-white-slightlytransparent
+			down: flat-borderedroundrect-20-omega-slightlytransparent
+		}
+
+		cosmetic-slot: {
+			up: flat-borderedroundrect-20-gamma
+			!overTint: { base: up, color: hover-dim }
+			!downTint: { base: up, color: press-dim }
+		}
+
+		menu: {
+			up: button-beta
+			!overTint: { base: up, color: hover-dim }
+			!downTint: { base: up, color: press-dim }
+			!checkedTint: { base: up, color: press-dim }
+			!disabledTint: { base: up, color: disabled-dim }
+		}
+
+		toolbar: {
+			up: button-beta
+			!overTint: { base: up, color: hover-dim }
+			!downTint: { base: up, color: press-dim }
+			!disabledTint: { base: up, color: disabled-dim }
+
+			checked: button-gamma
+			!checkedOverTint: { base: checked, color: hover-dim }
+		}
+	}
+
+	com.badlogic.gdx.scenes.scene2d.ui.TextButton$TextButtonStyle: {
+		default: {
+			font: baloo-medium
+			fontColor: white
+			downFontColor: press-dim
+			disabledFontColor: disabled-dim
+
+			up: flat-borderedroundrect-20-gamma
+			!overTint: { base: up, color: hover-dim }
+			!downTint: { base: up, color: press-dim }
+			!disabledTint: { base: up, color: disabled-dim }
+		}
+
+		default-semismall: {
+			font: baloo-semismall
+			fontColor: white
+			downFontColor: press-dim
+			disabledFontColor: disabled-dim
+
+			up: flat-borderedroundrect-20-gamma
+			!overTint: { base: up, color: hover-dim }
+			!downTint: { base: up, color: press-dim }
+			!disabledTint: { base: up, color: disabled-dim }
+		}
+
+		default-small: {
+			font: baloo-small
+			fontColor: white
+			downFontColor: press-dim
+			disabledFontColor: disabled-dim
+
+			up: flat-borderedroundrect-20-gamma
+			!overTint: { base: up, color: hover-dim }
+			!downTint: { base: up, color: press-dim }
+			!disabledTint: { base: up, color: disabled-dim }
+		}
+
+		default-smaller: {
+			font: baloo-smaller
+			fontColor: white
+			downFontColor: press-dim
+			disabledFontColor: disabled-dim
+
+			up: flat-borderedroundrect-20-gamma
+			!overTint: { base: up, color: hover-dim }
+			!downTint: { base: up, color: press-dim }
+			!disabledTint: { base: up, color: disabled-dim }
+		}
+
+		default-tiny: {
+			font: baloo-tiny
+			fontColor: white
+			downFontColor: press-dim
+			disabledFontColor: disabled-dim
+
+			up: flat-borderedroundrect-20-gamma
+			!overTint: { base: up, color: hover-dim }
+			!downTint: { base: up, color: press-dim }
+			!disabledTint: { base: up, color: disabled-dim }
+		}
+
+		toggle: {
+			font: baloo-medium
+			fontColor: white
+			downFontColor: press-dim
+			disabledFontColor: disabled-dim
+
+			up: flat-borderedroundrect-20-gamma
+			!overTint: { base: up, color: hover-dim }
+			!downTint: { base: up, color: press-dim }
+			!disabledTint: { base: up, color: disabled-dim }
+
+			checked: flat-borderedroundrect-20-omega
+			!checkedOverTint: { base: checked, color: hover-dim }
+		}
+
+		delta: {
+			font: baloo-medium
+			fontColor: white
+			downFontColor: press-dim
+			disabledFontColor: disabled-dim
+
+			up: flat-borderedroundrect-20-delta
+			!overTint: { base: up, color: hover-dim }
+			!downTint: { base: up, color: press-dim }
+			!disabledTint: { base: up, color: disabled-dim }
+		}
+
+		delta-small: {
+			font: baloo-small
+			fontColor: white
+			downFontColor: press-dim
+			disabledFontColor: disabled-dim
+
+			up: flat-borderedroundrect-20-delta
+			!overTint: { base: up, color: hover-dim }
+			!downTint: { base: up, color: press-dim }
+			!disabledTint: { base: up, color: disabled-dim }
+		}
+
+		delta-tiny: {
+			font: baloo-tiny
+			fontColor: white
+			downFontColor: press-dim
+			disabledFontColor: disabled-dim
+
+			up: flat-borderedroundrect-20-delta
+			!overTint: { base: up, color: hover-dim }
+			!downTint: { base: up, color: press-dim }
+			!disabledTint: { base: up, color: disabled-dim }
+		}
+
+		beta: {
+			font: baloo-medium
+			fontColor: white
+			downFontColor: press-dim
+			disabledFontColor: disabled-dim
+
+			up: flat-borderedroundrect-20-beta
+			!overTint: { base: up, color: hover-dim }
+			!downTint: { base: up, color: press-dim }
+			!disabledTint: { base: up, color: disabled-dim }
+		}
+
+		beta-small: {
+			font: baloo-small
+			fontColor: white
+			downFontColor: press-dim
+			disabledFontColor: disabled-dim
+
+			up: flat-borderedroundrect-20-beta
+			!overTint: { base: up, color: hover-dim }
+			!downTint: { base: up, color: press-dim }
+			!disabledTint: { base: up, color: disabled-dim }
+		}
+
+		beta-tiny: {
+			font: baloo-tiny
+			fontColor: white
+			downFontColor: press-dim
+			disabledFontColor: disabled-dim
+
+			up: flat-borderedroundrect-20-beta
+			!overTint: { base: up, color: hover-dim }
+			!downTint: { base: up, color: press-dim }
+			!disabledTint: { base: up, color: disabled-dim }
+		}
+
+		omega: {
+			font: baloo-medium
+			fontColor: white
+			downFontColor: press-dim
+			disabledFontColor: disabled-dim
+
+			up: flat-borderedroundrect-20-omega
+			!overTint: { base: up, color: hover-dim }
+			!downTint: { base: up, color: press-dim }
+			!disabledTint: { base: up, color: disabled-dim }
+		}
+
+
+		omega-small: {
+			font: baloo-small
+			fontColor: white
+			downFontColor: press-dim
+			disabledFontColor: disabled-dim
+
+			up: flat-borderedroundrect-20-omega
+			!overTint: { base: up, color: hover-dim }
+			!downTint: { base: up, color: press-dim }
+			!disabledTint: { base: up, color: disabled-dim }
+		}
+
+	    biome-menu-button: {
+	        font: baloo-medium
+	        fontColor: white
+	        downFontColor: press-dim
+
+		    up: button-beta
+		    !overTint: { base: up, color: hover-dim }
+		    !downTint: { base: up, color: press-dim }
+		    !disabledTint: { base: up, color: disabled-dim }
+
+		    checked: button-white
+		    !checkedOverTint: { base: up, color: hover-dim }
+	    }
+
+		flat: {
+			font: baloo-small
+			fontColor: white
+			up: flat-roundrect-20-alpha
+			!overTint: { base: up, color: hover-dim }
+			!downTint: { base: checked, color: press-dim }
+			checked: flat-roundrect-20-beta
+			!checkedOverTint: { base: checked, color: hover-dim }
+		}
+
+		chat-tab: {
+			font: baloo-semismall
+			fontColor: lightgray
+			downFontColor: white
+			checkedFontColor: white
+		}
+
+		chat-tab-add: {
+			font: baloo-medium
+			fontColor: lightgray
+			downFontColor: white
+			overFontColor: white
+
+			up: alpha-transparent
+			down: alpha-verytransparent
+		}
+	}
+
+	net.jumpai.util.ui.linkbutton.LinkButtonStyle: {
+		default: {
+			font: baloo-medium
+			fontColor: white
+			downFontColor: press-dim
+			overFontColor: hover-dim
+			lineWidth: 2.0
+		}
+	}
+
+	com.badlogic.gdx.scenes.scene2d.ui.ImageButton$ImageButtonStyle: {
+		settings: {
+			up: button-beta
+			!overTint: { base: up, color: hover-dim }
+			!downTint: { base: up, color: press-dim }
+			!disabledTint: { base: up, color: disabled-dim }
+
+			imageUp: settings-icon
+			!imageOverTint: { base: imageUp, color: hover-dim }
+			!imageDownTint: { base: imageUp, color: press-dim }
+			!imageDisabledTint: { base: imageUp, color: disabled-dim }
+		}
+	}
+
+	com.badlogic.gdx.scenes.scene2d.ui.CheckBox$CheckBoxStyle: {
+		default: {
+			checkboxOn: square-gamma
+			checkboxOff: square-alpha
+
+			font: baloo-medium
+			fontColor: white
+	        disabledFontColor: disabled-dim
+	        !checkboxOnDisabledTint: { base: checkboxOn, color: disabled-dim }
+	        !checkboxOffDisabledTint: { base: checkboxOff, color: disabled-dim }
+		}
+
+		default-small: {
+			checkboxOn: square-gamma
+			checkboxOff: square-alpha
+
+			font: baloo-small
+			fontColor: white
+			disabledFontColor: disabled-dim
+			!checkboxOnDisabledTint: { base: checkboxOn, color: disabled-dim }
+			!checkboxOffDisabledTint: { base: checkboxOff, color: disabled-dim }
+		}
+	}
+
+	com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle: {
+		default-minuscule: {
+			font: baloo-minuscule
+			fontColor: white
+		}
+
+		default-tiny: {
+			font: baloo-tiny
+			fontColor: white
+		}
+
+		default-smaller: {
+			font: baloo-smaller
+			fontColor: white
+		}
+
+		default-small: {
+			font: baloo-small
+			fontColor: white
+		}
+
+		default-semismall: {
+			font: baloo-semismall
+			fontColor: white
+		}
+
+		default: {
+			font: baloo-medium
+			fontColor: white
+		}
+
+		default-large: {
+			font: baloo-large
+			fontColor: white
+		}
+
+		default-big: {
+			font: baloo-big
+			fontColor: white
+		}
+
+		default-giant: {
+			font: baloo-giant
+			fontColor: white
+		}
+
+		default-gigantic: {
+			font: baloo-gigantic
+			fontColor: white
+		}
+
+		default-huge: {
+			font: baloo-huge
+			fontColor: white
+		}
+	}
+
+	com.badlogic.gdx.scenes.scene2d.ui.TextField$TextFieldStyle: {
+		default: {
+			font: baloo-medium
+			fontColor: white
+			disabledFontColor: disabled-dim
+
+			background: square-alpha
+			!disabledBackgroundTint: { base: background, color: disabled-dim }
+
+			cursor: cursor
+			selection: gamma
+		}
+
+		chat-field: {
+			font: baloo-semismall
+			fontColor: white
+
+			background: alpha-transparent
+
+			cursor: cursor
+			selection: gamma
+		}
+
+		default-tiny: {
+			font: baloo-tiny
+			fontColor: white
+			disabledFontColor: disabled-dim
+
+			background: square-alpha
+			!disabledBackgroundTint: { base: background, color: disabled-dim }
+
+			cursor: cursor
+			selection: gamma
+		}
+
+		default-small: {
+			font: baloo-small
+			fontColor: white
+			disabledFontColor: disabled-dim
+
+			background: square-alpha
+			!disabledBackgroundTint: { base: background, color: disabled-dim }
+
+			cursor: cursor
+			selection: gamma
+		}
+	}
+
+	net.jumpai.util.ui.textfield.validated.ValidatedTextFieldStyle: {
+		default: {
+			font: baloo-medium
+			fontColor: white
+			background: square-alpha
+			!disabledBackgroundTint: { base: background, color: disabled-dim }
+
+			cursor: cursor
+			selection: gamma
+
+			valid: checkmark
+			loading: threedots
+			invalid: cross
+
+			validBackground: square-alpha-border-gamma
+			invalidBackground: square-alpha-border-delta
+
+			popupFont: baloo-small
+			popupFontColor: white
+			popupBackground: flat-roundrect-20-alpha-transparent
+			popupWidth: 220.0
+			popupOffsetX: 40.0
+			popupOffsetY: 40.0
+		}
+	}
+
+	com.badlogic.gdx.scenes.scene2d.ui.ProgressBar$ProgressBarStyle: {
+		default-horizontal: {
+			background: darker-alpha-slider
+			knobBefore: white-slider
+		}
+
+		omega-horizontal: {
+			background: darker-alpha-slider
+			knobBefore: omega-slider
+		}
+
+		white-overlay-horizontal: {
+			knobBefore: white-slider
+		}
+	}
+
+	com.badlogic.gdx.scenes.scene2d.ui.Slider$SliderStyle: {
+		default-horizontal: {
+			background: alpha-slider
+			knobBefore: white-slider
+			knob: white-slider-knob
+		}
+
+		default-vertical: {
+			background: alpha-slider
+			knobBefore: white-slider
+			knob: white-slider-knob
+		}
+	}
+
+	com.badlogic.gdx.scenes.scene2d.ui.ScrollPane$ScrollPaneStyle: {
+		default: {
+			hScrollKnob: gamma-slider
+			vScrollKnob: gamma-slider
+		}
+
+		chat: {
+			background: alpha-verytransparent
+			hScrollKnob: alpha-slider
+			vScrollKnob: alpha-slider
+		}
+
+		chat-header: {}
+	}
+
+	com.badlogic.gdx.scenes.scene2d.ui.Window$WindowStyle: {
+		default: {
+			background: flat-roundrect-20-alpha
+			titleFont: baloo-small
+			titleFontColor: white
+		}
+
+		dialog: {
+			background: flat-roundrect-20-alpha
+			titleFont: baloo-small
+			titleFontColor: white
+		}
+
+		inputconfigmenu: {
+			background: flat-roundrect-20-alpha
+			titleFont: baloo-medium
+			titleFontColor: white
+		}
+
+		graphicalsettingsmenu: {
+			background: flat-roundrect-20-beta-slightlytransparent
+			titleFont: baloo-small
+			titleFontColor: white
+		}
+	}
+
+	net.jumpai.util.ui.actorhandle.ActorHandleStyle: {
+		object-picker: {
+			background: actorhandle-right-alpha
+		}
+	}
+
+	net.jumpai.util.ui.popup.PopupMessageStyle: {
+		default: {
+			font: baloo-small
+			fontColor: white
+
+			align: 20 // bottom right
+			margin: 10.0
+			width: 400.0
+
+			background: flat-roundrect-20-alpha
+		}
+	}
+
+	com.badlogic.gdx.scenes.scene2d.ui.SelectBox$SelectBoxStyle: {
+		default: {
+			font: baloo-small
+			fontColor: white
+			background: square-alpha
+			scrollStyle: default
+
+			listStyle: {
+				font: baloo-small
+				selection: square-beta
+				background: flat-roundrect-20-alpha
+			}
+		}
+	}
+
+	net.jumpai.util.ui.colorpicker.ColorPickerStyle: {
+		default: {
+			font: baloo-small
+			fieldCursor: cursor
+			fieldSelection: gamma
+		}
+	}
+
+	com.badlogic.gdx.scenes.scene2d.ui.TextTooltip$TextTooltipStyle: {
+		default: {
+			label: default-small
+			background: flat-roundrect-20-alpha
+			wrapWidth: 300.0
+		}
+	}
+}

@@ -1,0 +1,15 @@
+{
+    "platform": "mac",
+    "jdk": "out/jdks/mac-jdk",
+    "executable": "MakerKing",
+    "classpath": [
+        "desktop/build/libs/MakerKing.data"
+    ],
+    "removelibs": [
+        "desktop/build/libs/MakerKing.data"
+    ],
+    "mainclass": "net.jumpai.client.desktop.DesktopLauncher",
+    "minimizejre": "hard",
+    "output": "out/packr/mac",
+    "icon": "tools/res/icons/mac.icns"
+}

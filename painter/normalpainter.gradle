@@ -1,0 +1,19 @@
+
+task normalPainterJar(type: Jar) {
+    dependsOn classes
+    from files(sourceSets.main.output.classesDirs)
+    from files(sourceSets.main.output.resourcesDir)
+    from {configurations.compile.collect {zipTree(it)}}
+
+    manifest {
+        attributes 'Main-Class': 'net.jumpai.tools.normalpainter.NormalPainterLauncher'
+    }
+    include('**')
+    exclude('sfd.ser')
+    exclude('META-INF/maven/', 'META-INF/services/', 'META-INF/DEPENDENCIES', 'META-INF/INDEX.LIST')
+    exclude('packr*')
+    exclude('uiskin.*')
+    exclude('*.png', '*.fnt')
+
+    archiveName 'normalpainter.jar'
+}

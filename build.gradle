@@ -1,0 +1,24 @@
+allprojects {
+    apply plugin: "idea"
+
+    ext {
+        appName = "Jumpai"
+        gdxVersion = '1.9.10'
+        junitVersion = '4.12'
+        packrVersion = 'WINTER-1.1.1'
+        humbleVersion = '0.2.1'
+        mysqlVersion = '5.1.46'
+        discordIPCVersion = 'WINTER-1.0'
+        discordRPCVersion = '2.0.2'
+        gdxAnimationVersion = '1.0.1'
+        paypalVersion = '1.0.2'
+        gsonVersion = '2.8.6'
+        javaImageScalingVersion = '0.8.6'
+    }
+
+    repositories {
+        mavenCentral()
+        jcenter()
+        mavenLocal()
+    }
+}

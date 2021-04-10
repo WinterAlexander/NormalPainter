@@ -1,0 +1,21 @@
+
+task lightTesterJar(type: Jar) {
+    dependsOn classes
+    from files(sourceSets.main.output.classesDirs)
+    from files(sourceSets.main.output.resourcesDir)
+    from {configurations.compile.collect {zipTree(it)}}
+
+    manifest {
+        attributes 'Main-Class': 'net.jumpai.tools.lighttester.LightTester'
+    }
+    include('**')
+    exclude('META-INF/HUMBLESO.DSA', 'META-INF/HUMBLESO.SF', 'humble-video-build.properties', 'sfd.ser')
+    exclude('humblevideo.dll', 'humblevideo64.dll', 'libhumblevideo.so', 'libhumblevideo64.so', 'libhumblevideo.dylib', 'libhumblevideo64.dylib')
+    exclude('sqlscripts/', 'sfx/', 'music/', 'packr_config/', 'minimize/', 'junit/', 'levels/', 'demo/', 'lang/')
+    exclude('META-INF/maven/', 'META-INF/services/', 'META-INF/DEPENDENCIES', 'META-INF/INDEX.LIST')
+    exclude('packr*')
+    exclude('uiskin.*')
+    exclude('*.png', '*.fnt')
+
+    archiveName 'light-tester.jar'
+}

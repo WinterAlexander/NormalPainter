@@ -1,0 +1,3 @@
+*.sql linguist-detectable=true linguist-language=SQL
+*.gradle linguist-detectable=true
+*.fnt -diff

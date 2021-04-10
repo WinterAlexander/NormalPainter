@@ -1,0 +1,204 @@
+
+String jumpaiVersion
+
+task fetchVersion(type: JavaExec) {
+    outputs.upToDateWhen { jumpaiVersion != null }
+
+    main = 'net.jumpai.Version'
+    classpath = sourceSets.main.runtimeClasspath
+    standardOutput new ByteArrayOutputStream()
+    doLast {
+        jumpaiVersion = standardOutput.toString().replaceAll("\\s+", "")
+    }
+}
+
+def names = [
+    'win64' : "MakerKing-%%VERSION%%-Windows",
+    'linux64' : "MakerKing-%%VERSION%%-Linux",
+    'mac' : "MakerKing-%%VERSION%%-Mac.app"
+]
+
+def platforms = names.keySet() as String[]
+
+def jdks = [
+    'win64' : 'https://github.com/AdoptOpenJDK/openjdk11-binaries/releases/download/jdk-11.0.9.1%2B1/OpenJDK11U-jre_x64_windows_hotspot_11.0.9.1_1.zip',
+    'linux64' : 'https://github.com/AdoptOpenJDK/openjdk11-binaries/releases/download/jdk-11.0.9.1%2B1/OpenJDK11U-jre_x64_linux_hotspot_11.0.9.1_1.tar.gz',
+    'mac' : 'https://github.com/AdoptOpenJDK/openjdk11-binaries/releases/download/jdk-11.0.9.1%2B1/OpenJDK11U-jre_x64_mac_hotspot_11.0.9.1_1.tar.gz'
+]
+
+def formats = [
+    'win64' : 'ZIP',
+    'linux64' : 'TAR_GZ',
+    'mac' : 'ZIP'
+]
+File gameJar = new File("${projectDir.parentFile}/desktop/build/libs/MakerKing.jar")
+File gameData = new File("${projectDir.parentFile}/desktop/build/libs/MakerKing.data")
+
+File jdksDir = new File(project.buildscript.sourceFile.parentFile.parentFile, 'out/jdks')
+File packrDir = new File("${projectDir.parentFile}/out/packr/")
+
+task standaloneJar(type: Copy) {
+    outputs.upToDateWhen { gameData.exists() }
+
+    dependsOn fetchVersion
+    dependsOn ':desktop:dist'
+
+    from gameJar.getAbsolutePath()
+    into packrDir
+    doLast {
+        new File(packrDir, "MakerKing.jar").renameTo(new File(packrDir, "MakerKing-${->jumpaiVersion}-All.jar"))
+    }
+}
+
+task copyGameJar(type: Copy) {
+    outputs.upToDateWhen { gameData.exists() }
+
+    dependsOn ':desktop:dist'
+    from gameJar.getAbsolutePath()
+    into gameData.getParentFile()
+    rename("MakerKing.jar", "MakerKing.data")
+}
+
+task setWindowsIcons(type: Exec) {
+    enabled = System.properties['os.name'].toLowerCase().contains('windows')
+    dependsOn fetchVersion
+    workingDir '.'
+    commandLine 'cmd', '/c', 'set_windows_icons.bat', "${->jumpaiVersion}"
+}
+
+for(platform in platforms) {
+    task("getJdk_" + platform) {
+        String url = jdks[platform]
+        File jdkDir = new File(jdksDir, platform + "-jdk")
+        File jdkFile = new File(jdkDir, url.split("/").last())
+        outputs.upToDateWhen { jdkFile.exists() }
+
+        doFirst {
+            if(!jdkDir.exists())
+                jdkDir.mkdirs()
+
+            if(jdkFile.exists())
+            {
+                println jdkFile.getName() + " is already present"
+                return
+            }
+            else
+            {
+                println "Downloading " + jdkFile.getName()
+                new URL(url).withInputStream {
+                    i -> jdkFile.withOutputStream { it << i }
+                }
+            }
+
+            for(file in jdkDir.listFiles()) {
+                if(file.equals(jdkFile))
+                    continue
+
+                if(file.isFile()) {
+                    if(!file.delete())
+                        println "ERROR: could not delete " + file.getAbsoluteFile()
+                } else if(!file.deleteDir())
+                    println "ERROR: could not delete content of " + file.getAbsoluteFile()
+            }
+
+            if(url.endsWith(".tar.gz")) // don't mix up archive type of what we downloaded vs archive type of what we compress (in formats)
+            {
+                copy {
+                    from tarTree(resources.gzip(jdkFile))
+                    into jdkDir
+                }
+            }
+            else if(url.endsWith(".zip"))
+            {
+                copy {
+                    from zipTree(jdkFile)
+                    into jdkDir
+                }
+            }
+        }
+    }
+
+    File packrInDir = new File(packrDir, platform)
+    String platformRawName = names[platform]
+
+    task("packr_" + platform, type: JavaExec) {
+        outputs.upToDateWhen { new File(packrDir, platformRawName.replace("%%VERSION%%", jumpaiVersion)).exists() }
+
+        dependsOn fetchVersion
+        dependsOn copyGameJar
+        dependsOn 'getJdk_' + platform
+
+        main = 'com.badlogicgames.packr.Packr'
+        classpath = sourceSets.main.runtimeClasspath
+        args 'tools/res/packr_config/' + platform + '.json'
+
+        workingDir = project.buildscript.sourceFile.parentFile.parentFile
+        doLast {
+            File packrOutDir = new File(packrDir, platformRawName.replace("%%VERSION%%", jumpaiVersion));
+            packrOutDir.deleteDir()
+
+            if(packrOutDir.exists())
+            {
+                println "ERROR Could not delete packr output " + packrOutDir.getAbsolutePath()
+                return
+            }
+
+            if(!packrInDir.renameTo(packrOutDir))
+                println "ERROR Could not rename packr output dir for " + packrInDir.getName()
+        }
+    }
+
+    if(formats[platform] == 'ZIP')
+    {
+        task('makeArchive_' + platform, type: Zip) {
+            if(platform.contains("win"))
+                dependsOn setWindowsIcons
+            dependsOn fetchVersion
+            dependsOn 'packr_' + platform
+            
+            from packrDir
+            destinationDirectory = packrDir
+            
+            archiveFileName = provider {
+                platformRawName.replace("%%VERSION%%", jumpaiVersion) + ".zip"
+            }
+
+            doFirst { // work around for a dynamic include
+                def includeDir = platformRawName.replace("%%VERSION%%", jumpaiVersion)
+                // Include only files and directories from 'includeDir'
+                include {
+                    it.relativePath.segments[0].equalsIgnoreCase(includeDir)
+                }
+            }
+        }
+    }
+    else if(formats[platform] == 'TAR_GZ')
+    {
+        task('makeArchive_' + platform, type: Tar) {
+            dependsOn 'packr_' + platform
+            from packrDir
+            destinationDirectory = packrDir
+
+            doFirst { // work around for a dynamic include
+                def includeDir = platformRawName.replace("%%VERSION%%", jumpaiVersion)
+                // Include only files and directories from 'includeDir'
+                include {
+                    it.relativePath.segments[0].equalsIgnoreCase(includeDir)
+                }
+            }
+            archiveFileName = provider {
+                platformRawName.replace("%%VERSION%%", jumpaiVersion) + ".tar.gz"
+            }
+            extension 'tar'
+            compression = Compression.GZIP
+        }
+    }
+    else
+        println 'Unsupported format for ' + platform
+}
+
+task deploy {
+    dependsOn standaloneJar
+    for(platform in platforms)
+        dependsOn 'makeArchive_' + platform
+}
