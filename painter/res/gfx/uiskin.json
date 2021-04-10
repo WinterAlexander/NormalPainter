@@ -7,7 +7,7 @@
 // Since we added custom fields to support InlineTint
 // @Suppress(NonExistingField)
 {
-	net.jumpai.util.ui.skin.DynamicFont: {
+	com.normalpainter.util.ui.skin.DynamicFont: {
 		baloo-huge: {
 			family: fonts/baloo
 			size: 107
@@ -71,18 +71,6 @@
 			minHeight: 20
 		}
 
-		actorhandle-container-right-white: {
-			region: actorhandle-container-unscaled
-			minWidth: 30
-			minHeight: 100
-		}
-
-		actorhandle-grip-right-white: {
-			region: actorhandle-grip-unscaled
-			minWidth: 30
-			minHeight: 100
-		}
-
 		checkmark: {
 			region: checkmark-unscaled
 			minWidth: 30
@@ -120,23 +108,7 @@
 		}
 	}
 
-	net.jumpai.util.ui.drawable.RotatedTextureRegionDrawable: {
-		actorhandle-container-top-white: {
-			region: actorhandle-container-unscaled
-			minWidth: 100
-			minHeight: 30
-			angle: 90
-		}
-
-		actorhandle-grip-top-white: {
-			region: actorhandle-grip-unscaled
-			minWidth: 100
-			minHeight: 30
-			angle: 90
-		}
-	}
-
-	net.jumpai.util.ui.drawable.PaddedDrawable: {
+	com.normalpainter.util.ui.drawable.PaddedDrawable: {
 		xpbar-separator: {
 			drawable: xpbar-separator-unpadded
 			padLeft: 12
@@ -266,7 +238,7 @@
 		disabled-dim: { hex: "#FFFFFFAA" }
 	}
 
-	net.jumpai.util.ui.drawable.TintedDrawable: {
+	com.normalpainter.util.ui.drawable.TintedDrawable: {
 		alpha: { drawable: white, color: alpha }
 		beta: { drawable: white, color: beta }
 		gamma: { drawable: white, color: gamma }
@@ -378,9 +350,6 @@
 		button-omega: { drawable: button-gray, color: omega, shader-tint: true }
 		button-white: { drawable: button-gray, color: white, shader-tint: true }
 
-		actorhandle-container-right-alpha: { drawable: actorhandle-container-right-white, color: alpha }
-		actorhandle-container-right-gamma: { drawable: actorhandle-container-right-white, color: gamma }
-
 		alpha-slider: { drawable: white-slider, color: alpha }
 		beta-slider: { drawable: white-slider, color: beta }
 		gamma-slider: { drawable: white-slider, color: gamma }
@@ -410,12 +379,12 @@
 		xpbar-small-inner-full-gamma: { drawable: xpbar-small-inner-full-gray, color: gamma, shader-tint: true  }
 	}
 
-	net.jumpai.util.ui.drawable.TintedDrawable: {
+	com.normalpainter.util.ui.drawable.TintedDrawable: {
 
 		darker-alpha-slider: { drawable: alpha-slider, color: { a: 1, r: 0.6, g: 0.6, b: 0.6 } }
 	}
 
-	net.jumpai.util.ui.drawable.MultiDrawable: {
+	com.normalpainter.util.ui.drawable.MultiDrawable: {
 
 		square-alpha: { drawables: [ square-content-alpha, square-border-white ] }
 		square-beta: { drawables: [ square-content-beta, square-border-white ] }
@@ -425,9 +394,6 @@
 
 		square-alpha-border-gamma: { drawables: [ square-content-alpha, square-border-gamma ] }
 		square-alpha-border-delta: { drawables: [ square-content-alpha, square-border-delta ] }
-
-		actorhandle-right-alpha: { drawables: [ actorhandle-container-right-alpha, actorhandle-grip-right-white ] }
-		actorhandle-right-gamma: { drawables: [ actorhandle-container-right-gamma, actorhandle-grip-right-white ] }
 	}
 
 	com.badlogic.gdx.scenes.scene2d.ui.Button$ButtonStyle: {
@@ -684,16 +650,6 @@
 		}
 	}
 
-	net.jumpai.util.ui.linkbutton.LinkButtonStyle: {
-		default: {
-			font: baloo-medium
-			fontColor: white
-			downFontColor: press-dim
-			overFontColor: hover-dim
-			lineWidth: 2.0
-		}
-	}
-
 	com.badlogic.gdx.scenes.scene2d.ui.ImageButton$ImageButtonStyle: {
 		settings: {
 			up: button-beta
@@ -837,32 +793,6 @@
 		}
 	}
 
-	net.jumpai.util.ui.textfield.validated.ValidatedTextFieldStyle: {
-		default: {
-			font: baloo-medium
-			fontColor: white
-			background: square-alpha
-			!disabledBackgroundTint: { base: background, color: disabled-dim }
-
-			cursor: cursor
-			selection: gamma
-
-			valid: checkmark
-			loading: threedots
-			invalid: cross
-
-			validBackground: square-alpha-border-gamma
-			invalidBackground: square-alpha-border-delta
-
-			popupFont: baloo-small
-			popupFontColor: white
-			popupBackground: flat-roundrect-20-alpha-transparent
-			popupWidth: 220.0
-			popupOffsetX: 40.0
-			popupOffsetY: 40.0
-		}
-	}
-
 	com.badlogic.gdx.scenes.scene2d.ui.ProgressBar$ProgressBarStyle: {
 		default-horizontal: {
 			background: darker-alpha-slider
@@ -934,25 +864,6 @@
 		}
 	}
 
-	net.jumpai.util.ui.actorhandle.ActorHandleStyle: {
-		object-picker: {
-			background: actorhandle-right-alpha
-		}
-	}
-
-	net.jumpai.util.ui.popup.PopupMessageStyle: {
-		default: {
-			font: baloo-small
-			fontColor: white
-
-			align: 20 // bottom right
-			margin: 10.0
-			width: 400.0
-
-			background: flat-roundrect-20-alpha
-		}
-	}
-
 	com.badlogic.gdx.scenes.scene2d.ui.SelectBox$SelectBoxStyle: {
 		default: {
 			font: baloo-small
@@ -965,14 +876,6 @@
 				selection: square-beta
 				background: flat-roundrect-20-alpha
 			}
-		}
-	}
-
-	net.jumpai.util.ui.colorpicker.ColorPickerStyle: {
-		default: {
-			font: baloo-small
-			fieldCursor: cursor
-			fieldSelection: gamma
 		}
 	}
 
