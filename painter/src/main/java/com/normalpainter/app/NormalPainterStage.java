@@ -39,6 +39,7 @@ import com.normalpainter.render.AssetSupplier;
 import com.normalpainter.util.math.MathUtil;
 import com.normalpainter.util.ui.BetterSlider;
 
+import javax.swing.JFileChooser;
 import java.io.File;
 import java.util.Locale;
 
@@ -272,7 +273,7 @@ public class NormalPainterStage extends DynamicStage
 						load(true);
 					}
 				});
-			});
+			}, JFileChooser.OPEN_DIALOG);
 		}));
 		buttonWrapper.add(loadTrio);
 
@@ -296,7 +297,7 @@ public class NormalPainterStage extends DynamicStage
 					flatFile.setText(baseDir.toURI().relativize(file.toURI()).getPath());
 					loadFlat(false);
 				});
-			});
+			}, JFileChooser.OPEN_DIALOG);
 		}));
 
 		savingTable.add("Mask", "default-small").colspan(3).left().row();
@@ -316,7 +317,7 @@ public class NormalPainterStage extends DynamicStage
 					maskFile.setText(baseDir.toURI().relativize(file.toURI()).getPath());
 					loadMask(false);
 				});
-			});
+			}, JFileChooser.OPEN_DIALOG);
 		}));
 
 		savingTable.add("Input", "default-small").colspan(3).left().row();
@@ -336,7 +337,7 @@ public class NormalPainterStage extends DynamicStage
 					inputFile.setText(baseDir.toURI().relativize(file.toURI()).getPath());
 					load(false);
 				});
-			});
+			}, JFileChooser.OPEN_DIALOG);
 		}));
 
 		savingTable.add("Output", "default-small").colspan(3).left().row();
@@ -356,7 +357,7 @@ public class NormalPainterStage extends DynamicStage
 					outputFile.setText(baseDir.toURI().relativize(file.toURI()).getPath());
 					save();
 				});
-			});
+			}, JFileChooser.SAVE_DIALOG);
 		}));
 
 		savingTable.setBounds(NormalPainterScreen.STAGE_WIDTH - savingTable.getPrefWidth() - 10f,

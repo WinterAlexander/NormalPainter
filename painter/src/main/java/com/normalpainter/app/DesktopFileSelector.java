@@ -1,7 +1,6 @@
 package com.normalpainter.app;
 
 import com.badlogic.gdx.utils.Array;
-import com.normalpainter.util.io.FileSelector;
 
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -17,7 +16,7 @@ import static com.normalpainter.util.async.AsyncCaller.async;
  *
  * @author Alexander Winter
  */
-public class DesktopFileSelector implements FileSelector
+public class DesktopFileSelector
 {
 	private final Array<JFileChooser> currentChoosers = new Array<>();
 
@@ -25,8 +24,7 @@ public class DesktopFileSelector implements FileSelector
 
 	private File prevDir = null;
 
-	@Override
-	public void selectFile(Consumer<File> callback)
+	public void selectFile(Consumer<File> callback, int dialogType)
 	{
 		synchronized(arrLock)
 		{
@@ -39,6 +37,7 @@ public class DesktopFileSelector implements FileSelector
 			JFrame f = new JFrame();
 			chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
 			chooser.setAcceptAllFileFilterUsed(false);
+			chooser.setDialogType(dialogType);
 
 			if(prevDir != null)
 				chooser.setCurrentDirectory(prevDir);
@@ -54,7 +53,7 @@ public class DesktopFileSelector implements FileSelector
 				currentChoosers.add(chooser);
 			}
 
-			if(chooser.showSaveDialog(f) == JFileChooser.APPROVE_OPTION && chooser.getSelectedFile() != null)
+			if(chooser.showDialog(f, null) == JFileChooser.APPROVE_OPTION && chooser.getSelectedFile() != null)
 			{
 				prevDir = chooser.getSelectedFile().getParentFile();
 				callback.accept(chooser.getSelectedFile());
@@ -66,11 +65,5 @@ public class DesktopFileSelector implements FileSelector
 			}
 			f.dispose();
 		}).execute();
-	}
-
-	@Override
-	public boolean isSupported()
-	{
-		return true;
 	}
 }
