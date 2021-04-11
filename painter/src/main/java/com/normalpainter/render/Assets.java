@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ObjectMap;
-import com.normalpainter.world.lightmap.FBOLightMaskGenerator;
+import com.normalpainter.lightmap.FBOLightMaskGenerator;
 import com.normalpainter.render.assetprovider.AssetProvider;
 import com.normalpainter.render.assetprovider.DirectAssetProvider;
 import com.normalpainter.render.assetprovider.LightingShaderPackProvider;

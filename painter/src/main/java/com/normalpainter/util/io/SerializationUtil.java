@@ -1,7 +1,6 @@
 package com.normalpainter.util.io;
 
 import com.badlogic.gdx.utils.Array;
-import com.normalpainter.CustomSerializable;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;

@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.normalpainter.render.UVTransform;
-import com.normalpainter.world.lightmap.LightMaskGenerator;
+import com.normalpainter.lightmap.LightMaskGenerator;
 
 /**
  * A {@link Batch} that supports lighting draw calls

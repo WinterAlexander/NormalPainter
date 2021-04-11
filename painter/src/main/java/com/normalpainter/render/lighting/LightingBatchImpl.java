@@ -10,7 +10,7 @@ import com.badlogic.gdx.math.Affine2;
 import com.badlogic.gdx.math.MathUtils;
 import com.normalpainter.render.AbstractSpriteBatch;
 import com.normalpainter.util.Validation;
-import com.normalpainter.world.lightmap.LightMaskGenerator;
+import com.normalpainter.lightmap.LightMaskGenerator;
 import com.normalpainter.render.UVTransform;
 
 import static com.badlogic.gdx.graphics.GL20.GL_TEXTURE0;

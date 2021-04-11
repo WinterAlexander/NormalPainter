@@ -1,6 +1,5 @@
 package com.normalpainter.world;
 
-import com.normalpainter.world.camera.WorldCamera;
 import com.normalpainter.util.log.Logger;
 
 /**
