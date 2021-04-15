@@ -74,6 +74,11 @@ public class NormalPainterConfig
 		screen.colorPicker.numpadIntensity = conf.numpadIntensity;
 		screen.colorPicker.invert = conf.invert;
 
+		screen.colorPicker.joystickSwapXY = conf.joystickSwapXY;
+		screen.colorPicker.joystickInvertX = conf.joystickInvertX;
+		screen.colorPicker.joystickInvertY = conf.joystickInvertY;
+		screen.colorPicker.joystickRadius = conf.joystickRadius;
+
 		screen.renderFlat = conf.renderFlat;
 		screen.maskOpacity = conf.maskOpacity;
 		screen.flatOpacity = conf.flatOpacity;
@@ -119,6 +124,11 @@ public class NormalPainterConfig
 		conf.numpadIntensity = screen.colorPicker.numpadIntensity;
 		conf.invert = screen.colorPicker.invert;
 
+		conf.joystickSwapXY = screen.colorPicker.joystickSwapXY;
+		conf.joystickInvertX = screen.colorPicker.joystickInvertX;
+		conf.joystickInvertY = screen.colorPicker.joystickInvertY;
+		conf.joystickRadius = screen.colorPicker.joystickRadius;
+
 		conf.renderFlat = screen.renderFlat;
 		conf.maskOpacity = screen.maskOpacity;
 		conf.flatOpacity = screen.flatOpacity;
@@ -157,6 +167,11 @@ public class NormalPainterConfig
 		public float angle = 90f;
 		public float numpadIntensity = 0.75f;
 		public boolean invert = false;
+
+		public boolean joystickSwapXY = false;
+		public boolean joystickInvertX = false;
+		public boolean joystickInvertY = false;
+		public float joystickRadius = 1f;
 
 		public boolean renderFlat = false;
 		public float maskOpacity = 0.75f, flatOpacity = 0.75f;

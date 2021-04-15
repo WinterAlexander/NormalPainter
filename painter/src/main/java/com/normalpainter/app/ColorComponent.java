@@ -47,6 +47,11 @@ public class ColorComponent implements ControllerAdapter, JPenListener
 	public final Vector2 pinnedPoint = new Vector2();
 	public boolean pinned = false;
 
+	public boolean joystickSwapXY = false;
+	public boolean joystickInvertX = false;
+	public boolean joystickInvertY = false;
+	public float joystickRadius = 1f;
+
 	public final Vector3 mousePos = new Vector3();
 
 	public final Vector2 axisPos = new Vector2();
@@ -140,10 +145,10 @@ public class ColorComponent implements ControllerAdapter, JPenListener
 		if(screen.app.getScreen() != screen || disableStickOrPen)
 			return false;
 
-		if(axisCode % 2 == 0)
-			axisPos.x = value;
+		if(axisCode % 2 == (joystickSwapXY ? 1 : 0))
+			axisPos.x = value * (joystickInvertX ? -1f : 1f) / joystickRadius;
 		else
-			axisPos.y = -value;
+			axisPos.y = -value * (joystickInvertY ? -1f : 1f) / joystickRadius;
 
 		updateNormalDir();
 

@@ -17,12 +17,18 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.CheckBox;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.SelectBox;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.normalpainter.app.buffer.GdxPixmap;
+import com.normalpainter.app.dialog.AxisConfigurationDialog;
+import com.normalpainter.app.dialog.DesktopFileSelector;
+import com.normalpainter.app.dialog.NewPixmapDialog;
+import com.normalpainter.app.dialog.OkayDialog;
+import com.normalpainter.app.dialog.SaveDialog;
 import com.normalpainter.util.ui.dynamic.DynamicLabel;
 import com.normalpainter.util.ui.dynamic.DynamicStage;
 import com.normalpainter.util.ui.dynamic.DynamicTable;
@@ -864,10 +870,27 @@ public class NormalPainterStage extends DynamicStage
 		content.padLeft(20f);
 
 		for(Controller controller : Controllers.getControllers())
-			content.add(controller.getName(), "default-small").left().row();
+		{
+			Label label = new Label(controller.getName(), assets.getSkin(), "default-tiny");
+			content.add(label).left().row();
+		}
 
 		for(PenDevice pen : screen.colorPicker.jPenWrapper.getDevices())
-			content.add(pen.getName(), "default-small").left().row();
+		{
+			Label label = new Label(pen.getName(), assets.getSkin(), "default-tiny");
+			content.add(label).left().row();
+		}
+
+		TextButton configure = new TextButton("Configure Joystick", assets.getSkin(), "default-small");
+		configure.addListener(new InputListener() {
+			@Override
+			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+				new AxisConfigurationDialog(screen, assets).show(NormalPainterStage.this);
+				return true;
+			}
+		});
+		if(Controllers.getControllers().size > 1)
+			content.add(configure).growX().row();
 
 		table.add(content).expandX().left().row();
 	}
