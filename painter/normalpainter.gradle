@@ -6,7 +6,7 @@ task normalPainterJar(type: Jar) {
     from {configurations.compile.collect {zipTree(it)}}
 
     manifest {
-        attributes 'Main-Class': 'net.jumpai.tools.normalpainter.NormalPainterLauncher'
+        attributes 'Main-Class': 'com.normalpainter.app.NormalPainterLauncher'
     }
     include('**')
     exclude('sfd.ser')

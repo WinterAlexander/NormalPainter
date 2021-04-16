@@ -209,8 +209,8 @@ public abstract class AbstractSpriteBatch implements Batch
 		lastTexture.bind();
 		Mesh mesh = this.mesh;
 		mesh.setVertices(vertices, 0, idx);
-		mesh.getIndicesBuffer().position(0);
-		mesh.getIndicesBuffer().limit(count);
+		((java.nio.Buffer)mesh.getIndicesBuffer()).position(0);
+		((java.nio.Buffer)mesh.getIndicesBuffer()).limit(count);
 
 		if(blendingDisabled)
 			Gdx.gl.glDisable(GL20.GL_BLEND);

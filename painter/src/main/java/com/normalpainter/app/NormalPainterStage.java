@@ -96,7 +96,7 @@ public class NormalPainterStage extends DynamicStage
 		container.left();
 
 		DynamicTable table = new DynamicTable(assets.getSkin());
-		table.add("NormalPainter Alpha v1.4.1").left().row();
+		table.add("NormalPainter Alpha v1.5.0").left().row();
 		table.add("by Alexander Winter").left().row();
 
 		makeBrushSection(assets, screen.painter, table);
