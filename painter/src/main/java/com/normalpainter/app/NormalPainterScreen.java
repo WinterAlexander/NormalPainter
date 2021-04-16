@@ -710,6 +710,11 @@ public class NormalPainterScreen extends InputAdapter implements StageStackedScr
 			colorPicker.updateNormalDir();
 			return true;
 		}
+		else if(keycode == Keys.F8)
+		{
+			stage.setDebugAll(!stage.isDebugAll());
+			return true;
+		}
 
 		return false;
 	}

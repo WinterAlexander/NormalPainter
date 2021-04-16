@@ -32,7 +32,7 @@ public class ColorComponent implements ControllerAdapter, JPenListener
 	public float normalRotateSpeed = 1f;
 
 	public float maxTilt = 20f;
-	public float minRadius = 0f, maxRadius = 1f;
+	public float minRadius = 0f, maxRadius = 1f, radiusStep = 0f;
 	public boolean invertPinning = false;
 
 	public boolean normalRelToPath = false;
@@ -132,6 +132,12 @@ public class ColorComponent implements ControllerAdapter, JPenListener
 			axisPos.nor().scl(maxRadius);
 		else if(axisPos.len2() < pow2(minRadius))
 			axisPos.nor().scl(minRadius);
+
+		if(radiusStep > 0f)
+		{
+			float len = axisPos.len();
+			axisPos.scl(Math.round(len / radiusStep) * radiusStep / len);
+		}
 
 		normalDir.x = axisPos.x * (invert ? -1f : 1f);
 		normalDir.y = axisPos.y * (invert ? -1f : 1f);

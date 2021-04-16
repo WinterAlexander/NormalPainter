@@ -68,6 +68,7 @@ public class NormalPainterConfig
 		screen.colorPicker.maxTilt = conf.maxTilt;
 		screen.colorPicker.minRadius = conf.minRadius;
 		screen.colorPicker.maxRadius = conf.maxRadius;
+		screen.colorPicker.radiusStep = conf.radiusStep;
 		screen.colorPicker.invertPinning = conf.inside;
 		screen.colorPicker.normalRelToPath = conf.normalRelToPath;
 		screen.colorPicker.angle = conf.angle;
@@ -118,6 +119,7 @@ public class NormalPainterConfig
 		conf.maxTilt = screen.colorPicker.maxTilt;
 		conf.minRadius = screen.colorPicker.minRadius;
 		conf.maxRadius = screen.colorPicker.maxRadius;
+		conf.radiusStep = screen.colorPicker.radiusStep;
 		conf.inside = screen.colorPicker.invertPinning;
 		conf.normalRelToPath = screen.colorPicker.normalRelToPath;
 		conf.angle = screen.colorPicker.angle;
@@ -162,6 +164,7 @@ public class NormalPainterConfig
 		public float normalRotateSpeed = 1f;
 		public float maxTilt = 20f;
 		public float minRadius = 0f, maxRadius = 1f;
+		public float radiusStep = 0f;
 		public boolean inside = false;
 		public boolean normalRelToPath = false;
 		public float angle = 90f;

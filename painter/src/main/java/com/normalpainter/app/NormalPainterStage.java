@@ -67,7 +67,7 @@ public class NormalPainterStage extends DynamicStage
 	BetterSlider maxPressure;
 
 	CheckBox disaStick, invertPinning, normalRelToPath, invert;
-	BetterSlider maxTiltS, minRad, maxRad, rotSpeed, angleFromPath, numpadIntensity;
+	BetterSlider maxTiltS, minRad, maxRad, radStep, rotSpeed, angleFromPath, numpadIntensity;
 
 	CheckBox showFlat, maskOnTop, normV, livePrev, drawLines, flatOnTop;
 	BetterSlider maskOpacity, viewSpacing, flatOpacity;
@@ -125,6 +125,7 @@ public class NormalPainterStage extends DynamicStage
 			maxTiltS.setValue(screen.colorPicker.maxTilt);
 			minRad.setValue(screen.colorPicker.minRadius);
 			maxRad.setValue(screen.colorPicker.maxRadius);
+			radStep.setValue(screen.colorPicker.radiusStep);
 			rotSpeed.setValue(screen.colorPicker.normalRotateSpeed);
 			invertPinning.setChecked(screen.colorPicker.invertPinning);
 			normalRelToPath.setChecked(screen.colorPicker.normalRelToPath);
@@ -656,7 +657,7 @@ public class NormalPainterStage extends DynamicStage
 		content.add(maxTiltContainer).left().row();
 
 		content.add("Min radius: ", "default-small").left().row();
-		minRad = new BetterSlider(0f, 1f, 1f / 255f, false, assets.getSkin(), 150f);
+		minRad = new BetterSlider(0f, 1f, Math.max(colorPicker.radiusStep, 1f / 255f), false, assets.getSkin(), 150f);
 		minRad.setValue(colorPicker.minRadius);
 		minRad.addListener(new ChangeAdapter(() -> colorPicker.minRadius = minRad.getValue()));
 
@@ -667,7 +668,7 @@ public class NormalPainterStage extends DynamicStage
 		content.add(minRadContainer).left().row();
 
 		content.add("Max radius: ", "default-small").left().row();
-		maxRad = new BetterSlider(0f, 1f, 1f / 255f, false, assets.getSkin(), 150f);
+		maxRad = new BetterSlider(0f, 1f, Math.max(colorPicker.radiusStep, 1f / 255f), false, assets.getSkin(), 150f);
 		maxRad.setValue(colorPicker.maxRadius);
 		maxRad.addListener(new ChangeAdapter(() -> colorPicker.maxRadius = maxRad.getValue()));
 
@@ -676,6 +677,21 @@ public class NormalPainterStage extends DynamicStage
 		maxRadContainer.add(new DynamicLabel(() -> MathUtil.round(colorPicker.maxRadius, 2) + "", assets.getSkin(), "default-small"));
 
 		content.add(maxRadContainer).left().row();
+
+		content.add("Radius step: ", "default-small").left().row();
+		radStep = new BetterSlider(0f, 0.5f, 0.05f, false, assets.getSkin(), 150f);
+		radStep.setValue(colorPicker.radiusStep);
+		radStep.addListener(new ChangeAdapter(() -> {
+			colorPicker.radiusStep = radStep.getValue();
+			maxRad.setStepSize(Math.max(colorPicker.radiusStep, 1f / 255f));
+			minRad.setStepSize(Math.max(colorPicker.radiusStep, 1f / 255f));
+		}));
+
+		DynamicTable radStepContainer = new DynamicTable();
+		radStepContainer.add(radStep);
+		radStepContainer.add(new DynamicLabel(() -> MathUtil.round(colorPicker.radiusStep, 2) + "", assets.getSkin(), "default-small"));
+
+		content.add(radStepContainer).left().row();
 
 		content.add(new DynamicLabel(() -> {
 
@@ -889,7 +905,7 @@ public class NormalPainterStage extends DynamicStage
 				return true;
 			}
 		});
-		if(Controllers.getControllers().size > 1)
+		if(Controllers.getControllers().size > 0)
 			content.add(configure).growX().row();
 
 		table.add(content).expandX().left().row();
