@@ -32,7 +32,7 @@ public class ColorComponent implements ControllerAdapter, JPenListener
 	public float normalRotateSpeed = 1f;
 
 	public float maxTilt = 20f;
-	public float minRadius = 0f, maxRadius = 1f;
+	public float minRadius = 0f, maxRadius = 1f, radiusStep = 0f;
 	public boolean invertPinning = false;
 
 	public boolean normalRelToPath = false;
@@ -46,6 +46,11 @@ public class ColorComponent implements ControllerAdapter, JPenListener
 
 	public final Vector2 pinnedPoint = new Vector2();
 	public boolean pinned = false;
+
+	public boolean joystickSwapXY = false;
+	public boolean joystickInvertX = false;
+	public boolean joystickInvertY = false;
+	public float joystickRadius = 1f;
 
 	public final Vector3 mousePos = new Vector3();
 
@@ -128,6 +133,12 @@ public class ColorComponent implements ControllerAdapter, JPenListener
 		else if(axisPos.len2() < pow2(minRadius))
 			axisPos.nor().scl(minRadius);
 
+		if(radiusStep > 0f)
+		{
+			float len = axisPos.len();
+			axisPos.scl(Math.round(len / radiusStep) * radiusStep / len);
+		}
+
 		normalDir.x = axisPos.x * (invert ? -1f : 1f);
 		normalDir.y = axisPos.y * (invert ? -1f : 1f);
 		normalDir.z = (float)Math.sqrt(Math.max(0f, 1f - pow2(normalDir.x) - pow2(normalDir.y)));
@@ -140,10 +151,10 @@ public class ColorComponent implements ControllerAdapter, JPenListener
 		if(screen.app.getScreen() != screen || disableStickOrPen)
 			return false;
 
-		if(axisCode % 2 == 0)
-			axisPos.x = value;
+		if(axisCode % 2 == (joystickSwapXY ? 1 : 0))
+			axisPos.x = value * (joystickInvertX ? -1f : 1f) / joystickRadius;
 		else
-			axisPos.y = -value;
+			axisPos.y = -value * (joystickInvertY ? -1f : 1f) / joystickRadius;
 
 		updateNormalDir();
 

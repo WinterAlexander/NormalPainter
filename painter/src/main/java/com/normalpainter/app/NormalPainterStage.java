@@ -17,12 +17,18 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.CheckBox;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.SelectBox;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.normalpainter.app.buffer.GdxPixmap;
+import com.normalpainter.app.dialog.AxisConfigurationDialog;
+import com.normalpainter.app.dialog.DesktopFileSelector;
+import com.normalpainter.app.dialog.NewPixmapDialog;
+import com.normalpainter.app.dialog.OkayDialog;
+import com.normalpainter.app.dialog.SaveDialog;
 import com.normalpainter.util.ui.dynamic.DynamicLabel;
 import com.normalpainter.util.ui.dynamic.DynamicStage;
 import com.normalpainter.util.ui.dynamic.DynamicTable;
@@ -61,7 +67,7 @@ public class NormalPainterStage extends DynamicStage
 	BetterSlider maxPressure;
 
 	CheckBox disaStick, invertPinning, normalRelToPath, invert;
-	BetterSlider maxTiltS, minRad, maxRad, rotSpeed, angleFromPath, numpadIntensity;
+	BetterSlider maxTiltS, minRad, maxRad, radStep, rotSpeed, angleFromPath, numpadIntensity;
 
 	CheckBox showFlat, maskOnTop, normV, livePrev, drawLines, flatOnTop;
 	BetterSlider maskOpacity, viewSpacing, flatOpacity;
@@ -119,6 +125,7 @@ public class NormalPainterStage extends DynamicStage
 			maxTiltS.setValue(screen.colorPicker.maxTilt);
 			minRad.setValue(screen.colorPicker.minRadius);
 			maxRad.setValue(screen.colorPicker.maxRadius);
+			radStep.setValue(screen.colorPicker.radiusStep);
 			rotSpeed.setValue(screen.colorPicker.normalRotateSpeed);
 			invertPinning.setChecked(screen.colorPicker.invertPinning);
 			normalRelToPath.setChecked(screen.colorPicker.normalRelToPath);
@@ -650,7 +657,7 @@ public class NormalPainterStage extends DynamicStage
 		content.add(maxTiltContainer).left().row();
 
 		content.add("Min radius: ", "default-small").left().row();
-		minRad = new BetterSlider(0f, 1f, 1f / 255f, false, assets.getSkin(), 150f);
+		minRad = new BetterSlider(0f, 1f, Math.max(colorPicker.radiusStep, 1f / 255f), false, assets.getSkin(), 150f);
 		minRad.setValue(colorPicker.minRadius);
 		minRad.addListener(new ChangeAdapter(() -> colorPicker.minRadius = minRad.getValue()));
 
@@ -661,7 +668,7 @@ public class NormalPainterStage extends DynamicStage
 		content.add(minRadContainer).left().row();
 
 		content.add("Max radius: ", "default-small").left().row();
-		maxRad = new BetterSlider(0f, 1f, 1f / 255f, false, assets.getSkin(), 150f);
+		maxRad = new BetterSlider(0f, 1f, Math.max(colorPicker.radiusStep, 1f / 255f), false, assets.getSkin(), 150f);
 		maxRad.setValue(colorPicker.maxRadius);
 		maxRad.addListener(new ChangeAdapter(() -> colorPicker.maxRadius = maxRad.getValue()));
 
@@ -670,6 +677,21 @@ public class NormalPainterStage extends DynamicStage
 		maxRadContainer.add(new DynamicLabel(() -> MathUtil.round(colorPicker.maxRadius, 2) + "", assets.getSkin(), "default-small"));
 
 		content.add(maxRadContainer).left().row();
+
+		content.add("Radius step: ", "default-small").left().row();
+		radStep = new BetterSlider(0f, 0.5f, 0.05f, false, assets.getSkin(), 150f);
+		radStep.setValue(colorPicker.radiusStep);
+		radStep.addListener(new ChangeAdapter(() -> {
+			colorPicker.radiusStep = radStep.getValue();
+			maxRad.setStepSize(Math.max(colorPicker.radiusStep, 1f / 255f));
+			minRad.setStepSize(Math.max(colorPicker.radiusStep, 1f / 255f));
+		}));
+
+		DynamicTable radStepContainer = new DynamicTable();
+		radStepContainer.add(radStep);
+		radStepContainer.add(new DynamicLabel(() -> MathUtil.round(colorPicker.radiusStep, 2) + "", assets.getSkin(), "default-small"));
+
+		content.add(radStepContainer).left().row();
 
 		content.add(new DynamicLabel(() -> {
 
@@ -864,10 +886,27 @@ public class NormalPainterStage extends DynamicStage
 		content.padLeft(20f);
 
 		for(Controller controller : Controllers.getControllers())
-			content.add(controller.getName(), "default-small").left().row();
+		{
+			Label label = new Label(controller.getName(), assets.getSkin(), "default-tiny");
+			content.add(label).left().row();
+		}
 
 		for(PenDevice pen : screen.colorPicker.jPenWrapper.getDevices())
-			content.add(pen.getName(), "default-small").left().row();
+		{
+			Label label = new Label(pen.getName(), assets.getSkin(), "default-tiny");
+			content.add(label).left().row();
+		}
+
+		TextButton configure = new TextButton("Configure Joystick", assets.getSkin(), "default-small");
+		configure.addListener(new InputListener() {
+			@Override
+			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+				new AxisConfigurationDialog(screen, assets).show(NormalPainterStage.this);
+				return true;
+			}
+		});
+		if(Controllers.getControllers().size > 0)
+			content.add(configure).growX().row();
 
 		table.add(content).expandX().left().row();
 	}

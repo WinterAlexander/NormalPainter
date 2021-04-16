@@ -28,6 +28,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.I18NBundle;
 import com.badlogic.gdx.utils.ObjectMap;
+import com.normalpainter.app.dialog.OkayDialog;
 import com.normalpainter.render.ui.SkinTinter;
 import com.normalpainter.app.buffer.GdxPixmap;
 import com.normalpainter.app.buffer.RangedGdxBuffer;
@@ -707,6 +708,11 @@ public class NormalPainterScreen extends InputAdapter implements StageStackedScr
 		{
 			colorPicker.axisPos.set(1f, 1f).nor().scl(colorPicker.numpadIntensity);
 			colorPicker.updateNormalDir();
+			return true;
+		}
+		else if(keycode == Keys.F8)
+		{
+			stage.setDebugAll(!stage.isDebugAll());
 			return true;
 		}
 

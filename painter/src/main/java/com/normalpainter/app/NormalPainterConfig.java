@@ -68,11 +68,17 @@ public class NormalPainterConfig
 		screen.colorPicker.maxTilt = conf.maxTilt;
 		screen.colorPicker.minRadius = conf.minRadius;
 		screen.colorPicker.maxRadius = conf.maxRadius;
+		screen.colorPicker.radiusStep = conf.radiusStep;
 		screen.colorPicker.invertPinning = conf.inside;
 		screen.colorPicker.normalRelToPath = conf.normalRelToPath;
 		screen.colorPicker.angle = conf.angle;
 		screen.colorPicker.numpadIntensity = conf.numpadIntensity;
 		screen.colorPicker.invert = conf.invert;
+
+		screen.colorPicker.joystickSwapXY = conf.joystickSwapXY;
+		screen.colorPicker.joystickInvertX = conf.joystickInvertX;
+		screen.colorPicker.joystickInvertY = conf.joystickInvertY;
+		screen.colorPicker.joystickRadius = conf.joystickRadius;
 
 		screen.renderFlat = conf.renderFlat;
 		screen.maskOpacity = conf.maskOpacity;
@@ -113,11 +119,17 @@ public class NormalPainterConfig
 		conf.maxTilt = screen.colorPicker.maxTilt;
 		conf.minRadius = screen.colorPicker.minRadius;
 		conf.maxRadius = screen.colorPicker.maxRadius;
+		conf.radiusStep = screen.colorPicker.radiusStep;
 		conf.inside = screen.colorPicker.invertPinning;
 		conf.normalRelToPath = screen.colorPicker.normalRelToPath;
 		conf.angle = screen.colorPicker.angle;
 		conf.numpadIntensity = screen.colorPicker.numpadIntensity;
 		conf.invert = screen.colorPicker.invert;
+
+		conf.joystickSwapXY = screen.colorPicker.joystickSwapXY;
+		conf.joystickInvertX = screen.colorPicker.joystickInvertX;
+		conf.joystickInvertY = screen.colorPicker.joystickInvertY;
+		conf.joystickRadius = screen.colorPicker.joystickRadius;
 
 		conf.renderFlat = screen.renderFlat;
 		conf.maskOpacity = screen.maskOpacity;
@@ -152,11 +164,17 @@ public class NormalPainterConfig
 		public float normalRotateSpeed = 1f;
 		public float maxTilt = 20f;
 		public float minRadius = 0f, maxRadius = 1f;
+		public float radiusStep = 0f;
 		public boolean inside = false;
 		public boolean normalRelToPath = false;
 		public float angle = 90f;
 		public float numpadIntensity = 0.75f;
 		public boolean invert = false;
+
+		public boolean joystickSwapXY = false;
+		public boolean joystickInvertX = false;
+		public boolean joystickInvertY = false;
+		public float joystickRadius = 1f;
 
 		public boolean renderFlat = false;
 		public float maskOpacity = 0.75f, flatOpacity = 0.75f;
