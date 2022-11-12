@@ -44,8 +44,20 @@ public class ColorComponent implements ControllerAdapter, JPenListener
 
 	public float lastTiltX = 0f, lastTiltY = 0f;
 
-	public final Vector2 pinnedPoint = new Vector2();
+	/**
+	 * True when a pinned point has been set defining the color direction of every pixel
+	 */
 	public boolean pinned = false;
+	public final Vector2 pinnedPoint = new Vector2();
+
+	/**
+	 * True when a distance shape has been set defining the color intensity of every pixel
+	 */
+	public boolean distanceShapeSet = false;
+	/**
+	 * Radii of every possible direction for the distance shape (precision is 0.1 degree)
+	 */
+	public final float[] radii = new float[360 * 10];
 
 	public boolean joystickSwapXY = false;
 	public boolean joystickInvertX = false;
@@ -84,6 +96,16 @@ public class ColorComponent implements ControllerAdapter, JPenListener
 		float len = axisPos.len();
 
 		axisPos.set(mousePos.x, mousePos.y).sub(normalRelToPath ? screen.lastDraw : pinnedPoint);
+
+		if(distanceShapeSet)
+		{
+			len = axisPos.len() / radii[Math.round(axisPos.angle() * 10f)];
+
+			if(len > 1.01f)
+				len = 0f;
+			else if(len > 1.0f)
+				len = (0.01f - (len - 1f)) * 100f; // nice smoothing
+		}
 
 		if(normalRelToPath)
 			axisPos.rotate(-angle);
