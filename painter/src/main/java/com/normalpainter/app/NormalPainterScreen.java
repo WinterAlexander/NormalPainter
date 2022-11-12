@@ -102,6 +102,7 @@ public class NormalPainterScreen extends InputAdapter implements StageStackedScr
 	public boolean fillBlue = true;
 
 	private final Vector3 mousePos = new Vector3();
+	private final Vector2 lastDragPos = new Vector2();
 
 	public final Vector2 lastDraw = new Vector2();
 
@@ -452,7 +453,11 @@ public class NormalPainterScreen extends InputAdapter implements StageStackedScr
 		}
 
 
-		if(!(Gdx.input.isKeyPressed(Keys.SHIFT_LEFT) || Gdx.input.isKeyPressed(Keys.SHIFT_RIGHT) || Gdx.input.isKeyPressed(Keys.CONTROL_LEFT) || Gdx.input.isKeyPressed(Keys.CONTROL_RIGHT)))
+		if(!(Gdx.input.isKeyPressed(Keys.SHIFT_LEFT)
+				|| Gdx.input.isKeyPressed(Keys.SHIFT_RIGHT)
+				|| Gdx.input.isKeyPressed(Keys.CONTROL_LEFT)
+				|| Gdx.input.isKeyPressed(Keys.CONTROL_RIGHT)
+				|| settingDistanceShape))
 		{
 			float size = painter.brushSize * ((drawing && painter.enablePressure) ? painter.pressure : 1f) * WORLD_PERFECT_SCALE;
 			colorPicker.setColor();
@@ -771,6 +776,16 @@ public class NormalPainterScreen extends InputAdapter implements StageStackedScr
 				{
 					colorPicker.distanceShapeSet = false;
 					settingDistanceShape = true;
+
+					mousePos.set(screenX, screenY, 0f);
+
+					camera.unproject(mousePos,
+							stage.getViewport().getScreenX(),
+							stage.getViewport().getScreenY(),
+							stage.getViewport().getScreenWidth(),
+							stage.getViewport().getScreenHeight());
+
+					lastDragPos.set(mousePos.x, mousePos.y).sub(colorPicker.pinnedPoint);
 					return true;
 				}
 			}
@@ -899,7 +914,26 @@ public class NormalPainterScreen extends InputAdapter implements StageStackedScr
 
 			tmpVec2.set(mousePos.x, mousePos.y).sub(colorPicker.pinnedPoint);
 
-			colorPicker.radii[Math.round(tmpVec2.angle() * 10f)] = tmpVec2.len();
+			float startAngle = lastDragPos.angle();
+			float endAngle = tmpVec2.angle();
+
+			if(endAngle < startAngle)
+				endAngle += 360f;
+
+			int start = Math.round(startAngle * 10f);
+			int end = Math.round(endAngle * 10f);
+
+			float startRadius = lastDragPos.len();
+			float endRadius = tmpVec2.len();
+
+			for(int i = start + 1; i <= end; i++) {
+				float currentAngle = i / 10f;
+				float ratio = (endAngle - currentAngle) / (endAngle - startAngle);
+
+				colorPicker.radii[i % (360 * 10)] = endRadius * (1 - ratio) + startRadius * ratio;
+			}
+
+			lastDragPos.set(tmpVec2);
 
 			return true;
 		}

@@ -99,7 +99,7 @@ public class ColorComponent implements ControllerAdapter, JPenListener
 
 		if(distanceShapeSet)
 		{
-			len = axisPos.len() / radii[Math.round(axisPos.angle() * 10f)];
+			len = axisPos.len() / radii[Math.round(axisPos.angle() * 10f) % (360 * 10)];
 
 			if(len > 1.01f)
 				len = 0f;
