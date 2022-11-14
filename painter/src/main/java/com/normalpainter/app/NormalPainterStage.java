@@ -96,7 +96,7 @@ public class NormalPainterStage extends DynamicStage
 		container.left();
 
 		DynamicTable table = new DynamicTable(assets.getSkin());
-		table.add("NormalPainter Alpha v1.5.0").left().row();
+		table.add("NormalPainter Alpha v1.6.0").left().row();
 		table.add("by Alexander Winter").left().row();
 
 		makeBrushSection(assets, screen.painter, table);
@@ -941,6 +941,7 @@ public class NormalPainterStage extends DynamicStage
 		content.add("Scroll + CTRL sizes brush", "default-tiny").left().row();
 		content.add("Scroll + SHIFT rotates normal", "default-tiny").left().row();
 		content.add("CTRL + Click makes a gradient pin", "default-tiny").left().row();
+		content.add("ALT + Drag with a gradient pin makes a gradient shape", "default-tiny").left().row();
 		content.add("SHIFT + Click copies hovered color", "default-tiny").left().row();
 		content.add("Numpad sets basic normal", "default-tiny").left().row();
 		content.add("L locks current radius", "default-tiny").left().row();
