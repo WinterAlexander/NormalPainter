@@ -19,6 +19,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -101,11 +102,13 @@ public class NormalPainterScreen extends InputAdapter implements StageStackedScr
 	public boolean fillBlue = true;
 
 	private final Vector3 mousePos = new Vector3();
+	private final Vector2 lastDragPos = new Vector2();
 
 	public final Vector2 lastDraw = new Vector2();
 
 	private int prevPixX = -1, prevPixY = -1;
 	private boolean draggingCam = false, draggingAxis = false, drawing = false;
+	private boolean settingDistanceShape = false;
 
 	private final Vector3 camPrev = new Vector3(), camCur = new Vector3();
 	private final Vector2 camDrag = new Vector2();
@@ -365,22 +368,22 @@ public class NormalPainterScreen extends InputAdapter implements StageStackedScr
 					-height / 2 - WORLD_PERFECT_SCALE / 2f,
 					width / 2 + WORLD_PERFECT_SCALE / 2f,
 					-height / 2 - WORLD_PERFECT_SCALE / 2f,
-					WORLD_PERFECT_SCALE);
+					15f * camera.zoom);
 			shapeRenderer.rectLine(-width / 2 - WORLD_PERFECT_SCALE / 2f,
 					-height / 2 - WORLD_PERFECT_SCALE / 2f,
 					-width / 2 - WORLD_PERFECT_SCALE / 2f,
 					height / 2 + WORLD_PERFECT_SCALE / 2f,
-					WORLD_PERFECT_SCALE);
+					15f * camera.zoom);
 			shapeRenderer.rectLine(width / 2 + WORLD_PERFECT_SCALE / 2f,
 					height / 2 + WORLD_PERFECT_SCALE / 2f,
 					width / 2 + WORLD_PERFECT_SCALE / 2f,
 					-height / 2 - WORLD_PERFECT_SCALE / 2f,
-					WORLD_PERFECT_SCALE);
+					15f * camera.zoom);
 			shapeRenderer.rectLine(width / 2 + WORLD_PERFECT_SCALE / 2f,
 					height / 2 + WORLD_PERFECT_SCALE / 2f,
 					-width / 2 - WORLD_PERFECT_SCALE / 2f,
 					height / 2 + WORLD_PERFECT_SCALE / 2f,
-					WORLD_PERFECT_SCALE);
+					15f * camera.zoom);
 		}
 
 		if(viewNormals)
@@ -408,15 +411,15 @@ public class NormalPainterScreen extends InputAdapter implements StageStackedScr
 					float arrowX = tmpVec2.x;
 					float arrowY = tmpVec2.y;
 
-					shapeRenderer.line(x, y, x + arrowX, y + arrowY);
+					shapeRenderer.rectLine(x, y, x + arrowX, y + arrowY, 15f * camera.zoom);
 
 					tmpVec2.scl(0.25f);
 
 					tmpVec2.rotate(15f);
-					shapeRenderer.line(x + arrowX, y + arrowY, x + arrowX - tmpVec2.x, y + arrowY - tmpVec2.y);
+					shapeRenderer.rectLine(x + arrowX, y + arrowY, x + arrowX - tmpVec2.x, y + arrowY - tmpVec2.y, 15f * camera.zoom);
 
 					tmpVec2.rotate(-30f);
-					shapeRenderer.line(x + arrowX, y + arrowY, x + arrowX - tmpVec2.x, y + arrowY - tmpVec2.y);
+					shapeRenderer.rectLine(x + arrowX, y + arrowY, x + arrowX - tmpVec2.x, y + arrowY - tmpVec2.y, 15f * camera.zoom);
 
 				}
 			}
@@ -425,14 +428,39 @@ public class NormalPainterScreen extends InputAdapter implements StageStackedScr
 		if(colorPicker.pinned)
 		{
 			shapeRenderer.setColor(Color.BLACK);
-			shapeRenderer.line(colorPicker.pinnedPoint.x - 100f * camera.zoom, colorPicker.pinnedPoint.y - 100f * camera.zoom,
-					colorPicker.pinnedPoint.x + 100f * camera.zoom, colorPicker.pinnedPoint.y + 100f * camera.zoom);
-			shapeRenderer.line(colorPicker.pinnedPoint.x - 100f * camera.zoom, colorPicker.pinnedPoint.y + 100f * camera.zoom,
-					colorPicker.pinnedPoint.x + 100f * camera.zoom, colorPicker.pinnedPoint.y - 100f * camera.zoom);
+			shapeRenderer.rectLine(colorPicker.pinnedPoint.x - 100f * camera.zoom, colorPicker.pinnedPoint.y - 100f * camera.zoom,
+					colorPicker.pinnedPoint.x + 100f * camera.zoom, colorPicker.pinnedPoint.y + 100f * camera.zoom,
+					15f * camera.zoom);
+			shapeRenderer.rectLine(colorPicker.pinnedPoint.x - 100f * camera.zoom, colorPicker.pinnedPoint.y + 100f * camera.zoom,
+					colorPicker.pinnedPoint.x + 100f * camera.zoom, colorPicker.pinnedPoint.y - 100f * camera.zoom,
+					15f * camera.zoom);
+		}
+
+		if(colorPicker.distanceShapeSet || settingDistanceShape)
+		{
+			shapeRenderer.setColor(Color.RED);
+			for(int i = 0; i < 360 * 10; i++)
+			{
+				float startRadius = colorPicker.radii[i];
+				float endRadius = colorPicker.radii[(i + 1) % (360 * 10)];
+
+				float startX = colorPicker.pinnedPoint.x + startRadius * MathUtils.cosDeg(i / 10f);
+				float startY = colorPicker.pinnedPoint.y + startRadius * MathUtils.sinDeg(i / 10f);
+
+				float endX = colorPicker.pinnedPoint.x + endRadius * MathUtils.cosDeg((i + 1) / 10f);
+				float endY = colorPicker.pinnedPoint.y + endRadius * MathUtils.sinDeg((i + 1) / 10f);
+
+				shapeRenderer.rectLine(startX, startY, endX, endY, 15f * camera.zoom);
+			}
 		}
 
 
-		if(!(Gdx.input.isKeyPressed(Keys.SHIFT_LEFT) || Gdx.input.isKeyPressed(Keys.SHIFT_RIGHT) || Gdx.input.isKeyPressed(Keys.CONTROL_LEFT) || Gdx.input.isKeyPressed(Keys.CONTROL_RIGHT)))
+		if(!(Gdx.input.isKeyPressed(Keys.SHIFT_LEFT)
+				|| Gdx.input.isKeyPressed(Keys.SHIFT_RIGHT)
+				|| Gdx.input.isKeyPressed(Keys.CONTROL_LEFT)
+				|| Gdx.input.isKeyPressed(Keys.CONTROL_RIGHT)
+				|| Gdx.input.isKeyPressed(Keys.ALT_LEFT) && colorPicker.pinned
+				|| Gdx.input.isKeyPressed(Keys.ALT_RIGHT) && colorPicker.pinned))
 		{
 			float size = painter.brushSize * ((drawing && painter.enablePressure) ? painter.pressure : 1f) * WORLD_PERFECT_SCALE;
 			colorPicker.setColor();
@@ -440,7 +468,10 @@ public class NormalPainterScreen extends InputAdapter implements StageStackedScr
 			shapeRenderer.circle(mousePos.x, mousePos.y, size);
 
 			shapeRenderer.setColor(min(painter.color.r, min(painter.color.g, painter.color.b)) > 0.5f ? Color.BLACK : Color.WHITE);
-			shapeRenderer.line(mousePos.x, mousePos.y, mousePos.x + colorPicker.axisPos.x * size, mousePos.y + colorPicker.axisPos.y * size);
+			shapeRenderer.rectLine(mousePos.x,
+					mousePos.y,
+					mousePos.x + colorPicker.axisPos.x * size,
+					mousePos.y + colorPicker.axisPos.y * size, 15f * camera.zoom);
 		}
 
 		shapeRenderer.end();
@@ -745,11 +776,35 @@ public class NormalPainterScreen extends InputAdapter implements StageStackedScr
 
 		if(button == 0)
 		{
+			if((Gdx.input.isKeyPressed(Keys.ALT_RIGHT) || Gdx.input.isKeyPressed(Keys.ALT_LEFT)))
+			{
+				if(colorPicker.pinned)
+				{
+					colorPicker.distanceShapeSet = false;
+					settingDistanceShape = true;
+
+					mousePos.set(screenX, screenY, 0f);
+
+					camera.unproject(mousePos,
+							stage.getViewport().getScreenX(),
+							stage.getViewport().getScreenY(),
+							stage.getViewport().getScreenWidth(),
+							stage.getViewport().getScreenHeight());
+
+					lastDragPos.set(mousePos.x, mousePos.y).sub(colorPicker.pinnedPoint);
+					return true;
+				}
+			}
+
 			if(Gdx.input.isKeyPressed(Keys.CONTROL_RIGHT) || Gdx.input.isKeyPressed(Keys.CONTROL_LEFT))
 			{
 				if(colorPicker.pinned)
 				{
 					colorPicker.pinned = false;
+					colorPicker.distanceShapeSet = false;
+
+					for(int i = 0; i < 360 * 10; i++)
+						colorPicker.radii[i] = 0f;
 					return true;
 				}
 
@@ -853,6 +908,51 @@ public class NormalPainterScreen extends InputAdapter implements StageStackedScr
 			return true;
 		}
 
+		if(settingDistanceShape)
+		{
+			mousePos.set(screenX, screenY, 0f);
+
+			camera.unproject(mousePos,
+					stage.getViewport().getScreenX(),
+					stage.getViewport().getScreenY(),
+					stage.getViewport().getScreenWidth(),
+					stage.getViewport().getScreenHeight());
+
+			tmpVec2.set(mousePos.x, mousePos.y).sub(colorPicker.pinnedPoint);
+
+			Vector2 vec1, vec2;
+
+			if(lastDragPos.angle(tmpVec2) < 0f) {
+				vec1 = tmpVec2;
+				vec2 = lastDragPos;
+			} else {
+				vec1 = lastDragPos;
+				vec2 = tmpVec2;
+			}
+			float startAngle = vec1.angle();
+			float endAngle = vec2.angle();
+
+			if(endAngle < startAngle)
+				endAngle += 360f;
+
+			int start = Math.round(startAngle * 10f);
+			int end = Math.round(endAngle * 10f);
+
+			float startRadius = vec1.len();
+			float endRadius = vec2.len();
+
+			for(int i = start + 1; i <= end; i++) {
+				float currentAngle = i / 10f;
+				float ratio = (endAngle - currentAngle) / (endAngle - startAngle);
+
+				colorPicker.radii[i % (360 * 10)] = endRadius * (1 - ratio) + startRadius * ratio;
+			}
+
+			lastDragPos.set(tmpVec2);
+
+			return true;
+		}
+
 		if(drawing)
 		{
 			drawAt(screenX, screenY, true);
@@ -880,6 +980,11 @@ public class NormalPainterScreen extends InputAdapter implements StageStackedScr
 
 		if(button == 0)
 		{
+			if(settingDistanceShape)
+			{
+				settingDistanceShape = false;
+				colorPicker.distanceShapeSet = true;
+			}
 			painter.endDraw();
 			drawing = false;
 			draggingAxis = false;

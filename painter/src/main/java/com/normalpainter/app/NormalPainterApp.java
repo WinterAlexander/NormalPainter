@@ -6,7 +6,7 @@ import com.normalpainter.render.ui.dialog.ButtonDefinition;
 import com.normalpainter.render.ui.dialog.MultiButtonDialog;
 
 /**
- * An application
+ * An application to paint normal maps
  * <p>
  * Created on 2020-12-20.
  *
