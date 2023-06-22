@@ -614,6 +614,13 @@ public class NormalPainterStage extends DynamicStage
 		multiply.addListener(new ChangeAdapter(() -> painter.maskMultiply = multiply.isChecked()));
 		content.add(multiply).left().row();
 
+		TextButton interpolate = new TextButton("Interpolate (SLOW!!)", assets.getSkin(), "default-small");
+		interpolate.addListener(new ClickAdapter(() -> {
+			painter.interpolate();
+		}));
+
+		content.add(interpolate).expandX().left().row();
+
 		table.add(content).expandX().left().row();
 	}
 

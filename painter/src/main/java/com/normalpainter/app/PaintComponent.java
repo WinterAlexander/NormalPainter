@@ -6,12 +6,14 @@ import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Pixmap.Blending;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.utils.Array;
 import com.normalpainter.app.buffer.GdxPixmap;
 import com.normalpainter.app.buffer.PixmapBuffer;
 import com.normalpainter.app.buffer.RangedGdxBuffer;
 import com.normalpainter.app.jpun.JPenListener;
 
 import static com.badlogic.gdx.math.MathUtils.clamp;
+import static com.normalpainter.util.math.MathUtil.pow2;
 import static java.lang.Math.abs;
 import static java.lang.Math.max;
 import static java.lang.Math.min;
@@ -499,4 +501,77 @@ public class PaintComponent implements JPenListener
 
 	@Override
 	public void tiltChanged(float x, float y) {}
+
+	private static class Pixel
+	{
+		public int x, y, color;
+
+		public Pixel(int x, int y, int color)
+		{
+			this.x = x;
+			this.y = y;
+			this.color = color;
+		}
+	}
+
+	public void interpolate()
+	{
+		backup.copy(pixmap);
+		Array<Pixel> reference = new Array<>();
+
+		for(int x = 0; x < pixmap.getWidth(); x++)
+			for(int y = 0; y < pixmap.getHeight(); y++)
+			{
+				int color = pixmap.getPixel(x, y);
+				otherColor.set(color);
+				if(otherColor.a == 1.0f)
+					reference.add(new Pixel(x, y, color));
+			}
+
+		for(int x = 0; x < pixmap.getWidth(); x++)
+			for(int y = 0; y < pixmap.getHeight(); y++)
+			{
+				int color = pixmap.getPixel(x, y);
+				otherColor.set(color);
+
+				if(otherColor.a != 0.0f)
+					continue;
+
+				float totalWeight = 0.0f;
+				float vecX = 0.0f;
+				float vecY = 0.0f;
+
+				for(Pixel pixel : reference)
+				{
+					float d = pow2(pixel.x - x) + pow2(pixel.y - y);
+					float weight = 1.0f / d;
+
+					otherColor.set(pixel.color);
+					tmpVec3.set((int)(otherColor.r * 255), (int)(otherColor.g * 255), (int)(otherColor.b * 255));
+					tmpVec3.scl(1f / 255f);
+					tmpVec3.scl(2f).sub(1f);
+
+					vecX += weight * tmpVec3.x;
+					vecY += weight * tmpVec3.y;
+					totalWeight += weight;
+				}
+
+				vecX /= totalWeight;
+				vecY /= totalWeight;
+				tmpVec3.set(vecX, vecY, (float)Math.sqrt(1.0f - pow2(vecX) - pow2(vecY)));
+				tmpVec3.nor();
+
+				tmpVec3.add(1f).scl(0.5f);
+
+				otherColor.r = tmpVec3.x;
+				otherColor.g = tmpVec3.y;
+				otherColor.b = tmpVec3.z;
+				otherColor.a = 1.0f;
+				pixmap.setColor(otherColor);
+				pixmap.drawPixel(x, y);
+			}
+
+
+		updatePreview(true);
+	}
 }
