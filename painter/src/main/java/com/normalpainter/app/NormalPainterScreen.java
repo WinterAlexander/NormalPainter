@@ -1,6 +1,7 @@
 package com.normalpainter.app;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input.Buttons;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.assets.loaders.BitmapFontLoader.BitmapFontParameter;
@@ -779,7 +780,7 @@ public class NormalPainterScreen extends InputAdapter implements StageStackedScr
 		if(app.getScreen() != this)
 			return false;
 
-		if(button == 0)
+		if(button == Buttons.LEFT)
 		{
 			if((Gdx.input.isKeyPressed(Keys.ALT_RIGHT) || Gdx.input.isKeyPressed(Keys.ALT_LEFT)))
 			{
@@ -868,7 +869,7 @@ public class NormalPainterScreen extends InputAdapter implements StageStackedScr
 			return true;
 		}
 
-		if(button == 1)
+		if(button == Buttons.RIGHT || button == Buttons.MIDDLE)
 		{
 			draggingCam = true;
 			camDrag.set(screenX, screenY);
@@ -983,7 +984,7 @@ public class NormalPainterScreen extends InputAdapter implements StageStackedScr
 		if(app.getScreen() != this)
 			return false;
 
-		if(button == 0)
+		if(button == Buttons.LEFT)
 		{
 			if(settingDistanceShape)
 			{
@@ -995,7 +996,7 @@ public class NormalPainterScreen extends InputAdapter implements StageStackedScr
 			draggingAxis = false;
 			prevPixX = prevPixY = -1;
 		}
-		else if(button == 1)
+		else if(button == Buttons.RIGHT || button == Buttons.MIDDLE)
 			draggingCam = false;
 		return true;
 	}
