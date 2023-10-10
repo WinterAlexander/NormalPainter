@@ -27,6 +27,12 @@ import static com.normalpainter.util.Validation.ensureNotNull;
  */
 public class PaintComponent implements JPenListener
 {
+	public static final float[][] GAUSSIAN_BLUR_3_3_KERNEL = new float[][] {
+			{1f / 16f, 1f / 8f, 1f / 16f},
+			{1f / 8f, 1f / 4f, 1f / 8f},
+			{1f / 16f, 1f / 8f, 1f / 16f},
+	};
+
 	public NormalPainterScreen screen;
 
 	public GdxPixmap pixmap;
@@ -55,7 +61,7 @@ public class PaintComponent implements JPenListener
 
 	private int startX = -1, startY = -1, endX = -1, endY = -1;
 
-	public final Color color = new Color(), otherColor = new Color(), tmpColor = new Color(), bufferColor = new Color();
+	public final Color color = new Color(), otherColor = new Color(), tmpColor = new Color(), tmpColor2 = new Color(), bufferColor = new Color();
 
 	private final Vector3 tmpVec3 = new Vector3();
 
@@ -314,6 +320,58 @@ public class PaintComponent implements JPenListener
 			}
 
 		updatePreview(true);
+	}
+
+	public void blur()
+	{
+		flushMask();
+		backup.copy(pixmap);
+
+		for(int x = 0; x < pixmap.getWidth(); x++)
+			for(int y = 0; y < pixmap.getHeight(); y++)
+			{
+				getBlurredColor(backup, x, y, GAUSSIAN_BLUR_3_3_KERNEL, otherColor);
+				pixmap.setColor(otherColor);
+				pixmap.drawPixel(x, y);
+			}
+
+		updatePreview(true);
+	}
+
+	private void getBlurredColor(GdxPixmap pixmap, int centerX, int centerY, float[][] kernel, Color out) {
+
+		int kernelSize = kernel.length;
+
+		out.set(0);
+
+		for(int x = centerX - kernelSize / 2; x <= centerX + kernelSize / 2; x++) {
+			for(int y = centerY - kernelSize / 2; y <= centerY + kernelSize / 2; y++) {
+				int px = x;
+				int py = y;
+
+				if(px < 0)
+					px = -px + 1;
+
+				if(py < 0)
+					py = -py + 1;
+
+				if(px >= pixmap.getWidth())
+					px = 2 * pixmap.getWidth() - px - 1;
+
+				if(py >= pixmap.getHeight())
+					py = 2 * pixmap.getHeight() - py - 1;
+
+				tmpColor2.set(pixmap.getPixel(px, py));
+				tmpColor.set(0.5f, 0.5f, 1.0f, 1.0f);
+				tmpColor.mul(1.0f - tmpColor2.a);
+
+				tmpColor.add(tmpColor2);
+
+				tmpColor.mul(kernel[x - centerX + kernelSize / 2][y - centerY + kernelSize / 2]);
+				out.add(tmpColor);
+			}
+		}
+
 	}
 
 	private void renderBuffer(PixmapBuffer pixmap)

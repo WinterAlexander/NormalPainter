@@ -585,6 +585,11 @@ public class NormalPainterScreen extends InputAdapter implements StageStackedScr
 			painter.normalizeAll();
 			return true;
 		}
+		else if(keycode == Keys.B && (Gdx.input.isKeyPressed(Keys.CONTROL_LEFT) || Gdx.input.isKeyPressed(Keys.CONTROL_RIGHT)))
+		{
+			painter.blur();
+			return true;
+		}
 		else if(keycode == Keys.S && (Gdx.input.isKeyPressed(Keys.CONTROL_LEFT) || Gdx.input.isKeyPressed(Keys.CONTROL_RIGHT)))
 		{
 			stage.save();

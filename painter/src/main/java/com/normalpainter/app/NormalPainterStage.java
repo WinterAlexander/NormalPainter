@@ -545,7 +545,7 @@ public class NormalPainterStage extends DynamicStage
 		content.add(brushOpaContainer).left().row();
 
 		content.add("Size: ", "default-small").left().row();
-		brushS = new BetterSlider(0f, 100f, 1f, false, assets.getSkin(), 150f);
+		brushS = new BetterSlider(1f, 100f, 1f, false, assets.getSkin(), 150f);
 		brushS.setValue(painter.brushSize);
 		brushS.addListener(new ChangeAdapter(() -> painter.brushSize = Math.round(brushS.getValue())));
 
@@ -946,6 +946,7 @@ public class NormalPainterStage extends DynamicStage
 		content.add("Numpad sets basic normal", "default-tiny").left().row();
 		content.add("L locks current radius", "default-tiny").left().row();
 		content.add("CTRL + N normalizes all colors", "default-tiny").left().row();
+		content.add("CTRL + B blurs all normals", "default-tiny").left().row();
 		content.add("Delete/Backspace/E sets eraser", "default-tiny").left().row();
 		content.add("B sets mode to behind", "default-tiny").left().row();
 		content.add("R sets mode to normal", "default-tiny").left().row();
