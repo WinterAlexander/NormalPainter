@@ -17,7 +17,6 @@ repositories {
 }
 
 dependencies {
-    compile "me.winter:gdx-animation:$gdxAnimationVersion"
     compile "com.badlogicgames.gdx:gdx:$gdxVersion"
     compile "com.badlogicgames.gdx:gdx-controllers-desktop:$gdxVersion"
     compile "com.badlogicgames.gdx:gdx-backend-lwjgl:$gdxVersion"

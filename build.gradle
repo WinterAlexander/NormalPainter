@@ -7,7 +7,6 @@ allprojects {
         junitVersion = '4.12'
         humbleVersion = '0.2.1'
         mysqlVersion = '5.1.46'
-        gdxAnimationVersion = '1.0.5'
         paypalVersion = '1.0.2'
         gsonVersion = '2.8.6'
         javaImageScalingVersion = '0.8.6'
