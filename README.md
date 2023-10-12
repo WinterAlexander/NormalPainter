@@ -1,2 +1,2 @@
 # NormalPainter
-Paint normal maps easily! https://green-frisbee.itch.io/normalpainter
+Paint normal maps easily! https://winteralexander.itch.io/normalpainter
