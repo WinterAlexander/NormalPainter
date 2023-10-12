@@ -24,12 +24,10 @@ dependencies {
     compile "com.badlogicgames.gdx:gdx-tools:$gdxVersion"
     compile "com.badlogicgames.gdx:gdx-controllers-platform:$gdxVersion:natives-desktop"
     compile "com.mortennobel:java-image-scaling:$javaImageScalingVersion"
+    compile "com.kotcrab.vis:vis-ui:$visuiVersion"
 
     compile name: 'jpen-2'
 }
-
-new File("../jars/").mkdirs()
-libsDirName = '../jars/'
 
 apply from: 'lighttester.gradle'
 apply from: 'normalpainter.gradle'

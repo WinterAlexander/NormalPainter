@@ -1,15 +1,7 @@
 package com.normalpainter.app;
 
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
+import java.io.*;
 
 /**
  * Configuration for {@link NormalPainterApp}
@@ -27,6 +19,10 @@ public class NormalPainterConfig
 		try(ObjectInputStream ois = new ObjectInputStream(new BufferedInputStream(new FileInputStream(file))))
 		{
 			conf = (Conf)ois.readObject();
+		}
+		catch(FileNotFoundException ex)
+		{
+			conf = new Conf();
 		}
 		catch(IOException | ClassCastException | ClassNotFoundException ex)
 		{
@@ -92,10 +88,10 @@ public class NormalPainterConfig
 
 		screen.fillBlue = conf.fillBlue;
 
-		screen.stage.flatFile.setText(conf.flatFile);
-		screen.stage.maskFile.setText(conf.refFile);
-		screen.stage.inputFile.setText(conf.inputFile);
-		screen.stage.outputFile.setText(conf.outputFile);
+		screen.stage.flatFile = conf.flatFile;
+		screen.stage.maskFile = conf.refFile;
+		screen.stage.inputFile = conf.inputFile;
+		screen.stage.outputFile = conf.outputFile;
 
 		screen.stage.update();
 	}
@@ -143,10 +139,10 @@ public class NormalPainterConfig
 
 		conf.fillBlue = screen.fillBlue;
 
-		conf.flatFile = screen.stage.flatFile.getText();
-		conf.refFile = screen.stage.maskFile.getText();
-		conf.inputFile = screen.stage.inputFile.getText();
-		conf.outputFile = screen.stage.outputFile.getText();
+		conf.flatFile = screen.stage.flatFile;
+		conf.refFile = screen.stage.maskFile;
+		conf.inputFile = screen.stage.inputFile;
+		conf.outputFile = screen.stage.outputFile;
 	}
 
 	private static class Conf implements Serializable

@@ -399,7 +399,7 @@ public class LightTesterScreen extends InputAdapter implements StageStackedScree
 	public void dispose() {}
 
 	@Override
-	public boolean scrolled(int amount)
+	public boolean scrolled(float amountX, float amount)
 	{
 		float zoomGain;
 		if(!(Gdx.input.isKeyPressed(Keys.CONTROL_LEFT) || Gdx.input.isKeyPressed(Keys.CONTROL_RIGHT)))

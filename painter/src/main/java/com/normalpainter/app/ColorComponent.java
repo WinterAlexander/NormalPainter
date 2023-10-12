@@ -128,7 +128,7 @@ public class ColorComponent implements ControllerAdapter, JPenListener
 
 		float rangeSize = 2000f * screen.camera.zoom;
 		float rangeStartX = screen.camera.position.x + WORLD_WIDTH / 2f * screen.camera.zoom - rangeSize * 1.05f;
-		float rangeStartY = screen.camera.position.y + WORLD_HEIGHT / 2f * screen.camera.zoom - rangeSize * 1.05f;
+		float rangeStartY = screen.camera.position.y + (WORLD_HEIGHT / 2f - 500f) * screen.camera.zoom - rangeSize * 1.05f;
 
 		boolean inBox = MathUtil.inBox(mousePos.x, mousePos.y, rangeStartX, rangeStartY, rangeSize);
 
@@ -208,7 +208,7 @@ public class ColorComponent implements ControllerAdapter, JPenListener
 	{
 		float rangeSize = 2000f * screen.camera.zoom;
 		float rangeStartX = screen.camera.position.x + WORLD_WIDTH / 2f * screen.camera.zoom - rangeSize * 1.05f;
-		float rangeStartY = screen.camera.position.y + WORLD_HEIGHT / 2f * screen.camera.zoom - rangeSize * 1.05f;
+		float rangeStartY = screen.camera.position.y + (WORLD_HEIGHT / 2f - 500f) * screen.camera.zoom - rangeSize * 1.05f;
 
 		screen.batch.draw(screen.normalRange, rangeStartX, rangeStartY, rangeSize / 2f, rangeSize / 2f, rangeSize, rangeSize, invert ? -1f : 1f, invert ? -1f : 1f, 0f);
 
@@ -225,7 +225,7 @@ public class ColorComponent implements ControllerAdapter, JPenListener
 		screen.batch.setColor(screen.painter.color);
 		screen.batch.draw(screen.whitePixel,
 				screen.camera.position.x + WORLD_WIDTH / 2f * screen.camera.zoom - rangeSize * 1.05f,
-				screen.camera.position.y + WORLD_HEIGHT / 2f * screen.camera.zoom - rangeSize * 1.05f - colorSize * 1.05f,
+				screen.camera.position.y + (WORLD_HEIGHT / 2f - 500f) * screen.camera.zoom - rangeSize * 1.05f - colorSize * 1.05f,
 				rangeSize,
 				colorSize);
 	}

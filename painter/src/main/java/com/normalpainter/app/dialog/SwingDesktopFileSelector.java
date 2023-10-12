@@ -16,7 +16,7 @@ import static com.normalpainter.util.async.AsyncCaller.async;
  *
  * @author Alexander Winter
  */
-public class DesktopFileSelector
+public class SwingDesktopFileSelector
 {
 	private final Array<JFileChooser> currentChoosers = new Array<>();
 

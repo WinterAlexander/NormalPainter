@@ -30,6 +30,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.I18NBundle;
 import com.badlogic.gdx.utils.ObjectMap;
+import com.kotcrab.vis.ui.widget.Menu;
 import com.normalpainter.app.dialog.OkayDialog;
 import com.normalpainter.render.ui.SkinTinter;
 import com.normalpainter.app.buffer.GdxPixmap;
@@ -250,6 +251,10 @@ public class NormalPainterScreen extends InputAdapter implements StageStackedScr
 				font.setFixedWidthGlyphs("0123456789");
 
 			invalidateRecursively(stage.getRoot());
+
+			for(Menu menu : ReflectionUtil.<Array<Menu>>get(stage.menuBar, "menus")) {
+				invalidateRecursively(menu);
+			}
 		}
 	}
 
@@ -525,27 +530,47 @@ public class NormalPainterScreen extends InputAdapter implements StageStackedScr
 	}
 
 	@Override
-	public boolean scrolled(int amount)
+	public boolean scrolled(float amountX, float amountY)
 	{
 		if(app.getScreen() != this)
 			return false;
 
 		if(Gdx.input.isKeyPressed(Keys.SHIFT_LEFT) || Gdx.input.isKeyPressed(Keys.SHIFT_RIGHT))
 		{
-			colorPicker.axisPos.rotate(amount * colorPicker.normalRotateSpeed);
+			colorPicker.axisPos.rotate(amountY * colorPicker.normalRotateSpeed);
 			colorPicker.updateNormalDir();
 			return true;
 		}
 
 		if(Gdx.input.isKeyPressed(Keys.CONTROL_LEFT) || Gdx.input.isKeyPressed(Keys.CONTROL_RIGHT))
 		{
-			painter.brushSize += amount;
+			painter.brushSize += amountY;
 			painter.brushSize = max(0, painter.brushSize);
 			return true;
 		}
 
-		camera.zoom *= Math.pow(1.1f, amount);
+		camera.zoom *= Math.pow(1.1f, amountY);
 		return true;
+	}
+
+	public void testLighting()
+	{
+		if(flat == null)
+		{
+			new OkayDialog(assets, "A flat asset is needed for light testing").show(stage);
+			return;
+		}
+
+		lightScreen.texture = flat;
+		buffer.setColor(0.5f, 0.5f, 1f, 1f);
+		buffer.fillRectangle(0, 0, buffer.getWidth(), buffer.getHeight());
+		buffer.setBlending(Blending.SourceOver);
+		buffer.drawPixmap(painter.preview, 0, 0);
+
+		lightScreen.normal = new TextureRegion(new Texture(buffer));
+		lightScreen.camera.setPosition(camera.position.x, camera.position.y);
+		lightScreen.camera.zoom = camera.zoom;
+		app.setScreen(lightScreen);
 	}
 
 	@Override
@@ -553,22 +578,7 @@ public class NormalPainterScreen extends InputAdapter implements StageStackedScr
 	{
 		if(keycode == Keys.F5 && app.getScreen() == this)
 		{
-			if(flat == null)
-			{
-				new OkayDialog(assets, "A flat asset is needed for light testing").show(stage);
-				return true;
-			}
-
-			lightScreen.texture = flat;
-			buffer.setColor(0.5f, 0.5f, 1f, 1f);
-			buffer.fillRectangle(0, 0, buffer.getWidth(), buffer.getHeight());
-			buffer.setBlending(Blending.SourceOver);
-			buffer.drawPixmap(painter.preview, 0, 0);
-
-			lightScreen.normal = new TextureRegion(new Texture(buffer));
-			lightScreen.camera.setPosition(camera.position.x, camera.position.y);
-			lightScreen.camera.zoom = camera.zoom;
-			app.setScreen(lightScreen);
+			testLighting();
 			return true;
 		}
 
@@ -599,22 +609,7 @@ public class NormalPainterScreen extends InputAdapter implements StageStackedScr
 		else if(keycode == Keys.Z && (Gdx.input.isKeyPressed(Keys.CONTROL_LEFT))
 				|| Gdx.input.isKeyPressed(Keys.CONTROL_RIGHT))
 		{
-			if(painter.maskMultiply)
-			{
-				RangedGdxBuffer tmp = painter.maskBuffer;
-				painter.maskBuffer = painter.maskBufferBackup;
-				painter.updatePreview(true);
-
-				painter.maskBufferBackup = tmp;
-			}
-			else
-			{
-				GdxPixmap tmp = painter.pixmap;
-				painter.pixmap = painter.backup;
-				painter.updatePreview(true);
-
-				painter.backup = tmp;
-			}
+			painter.undo();
 			return true;
 		}
 		else if(keycode == Keys.SPACE)
