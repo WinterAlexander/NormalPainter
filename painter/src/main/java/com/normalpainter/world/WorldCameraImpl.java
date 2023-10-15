@@ -4,9 +4,6 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 
-import static java.lang.StrictMath.signum;
-import static com.normalpainter.util.math.MathUtil.pow2;
-
 /**
  * A camera for the WorldScreen, it gives a snapshot to the player by looking at where it is going
  * <p>

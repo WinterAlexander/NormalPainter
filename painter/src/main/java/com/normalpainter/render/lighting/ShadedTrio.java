@@ -1,7 +1,7 @@
 package com.normalpainter.render.lighting;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.normalpainter.util.Validation;
+import com.winteralexander.gdx.utils.Validation;
 
 /**
  * A bundle of {@link TextureRegion}s required for rendering an asset with full

@@ -4,8 +4,8 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
-import com.normalpainter.render.UVTransform;
 import com.normalpainter.lightmap.LightMaskGenerator;
+import com.winteralexander.gdx.utils.gfx.UVTransform;
 
 /**
  * A {@link Batch} that supports lighting draw calls

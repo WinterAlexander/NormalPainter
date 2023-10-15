@@ -13,7 +13,7 @@ import com.normalpainter.app.jpun.JPenListener;
 
 import static com.badlogic.gdx.math.MathUtils.clamp;
 import static com.normalpainter.app.NormalPainterScreen.WORLD_PERFECT_SCALE;
-import static com.normalpainter.util.Validation.ensureNotNull;
+import static com.winteralexander.gdx.utils.Validation.ensureNotNull;
 import static java.lang.Math.*;
 
 /**

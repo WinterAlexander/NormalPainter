@@ -7,7 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 import java.util.function.Consumer;
 
-import static com.normalpainter.util.Validation.ensureNotNull;
+import static com.winteralexander.gdx.utils.Validation.ensureNotNull;
 
 /**
  * Runs specified action on click

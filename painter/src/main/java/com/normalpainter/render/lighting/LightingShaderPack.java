@@ -3,7 +3,7 @@ package com.normalpainter.render.lighting;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.normalpainter.render.ShaderPack;
-import com.normalpainter.util.Validation;
+import com.winteralexander.gdx.utils.Validation;
 
 /**
  * {@link ShaderPack} for shaders which operate under different lighting

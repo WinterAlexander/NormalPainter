@@ -1,14 +1,14 @@
 package com.normalpainter.lightmap;
 
 import com.normalpainter.component.render.RenderPriority;
-import com.normalpainter.util.io.CustomSerializable;
+import com.winteralexander.gdx.utils.io.Serializable;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-import static com.normalpainter.util.io.StreamUtil.readByte;
-import static com.normalpainter.util.io.StreamUtil.writeByte;
+import static com.winteralexander.gdx.utils.io.StreamUtil.readByte;
+import static com.winteralexander.gdx.utils.io.StreamUtil.writeByte;
 
 /**
  * Page of a light map, discretization unit that holds a part of the light map
@@ -18,7 +18,7 @@ import static com.normalpainter.util.io.StreamUtil.writeByte;
  *
  * @author Alexander Winter
  */
-public class LightMapPage implements CustomSerializable
+public class LightMapPage implements Serializable
 {
 	private final byte[][] lightLevel = new byte[LightMap.LIGHT_MAP_PAGE_TILE_COUNT][LightMap.LIGHT_MAP_PAGE_TILE_COUNT];
 	private final byte[][] obsType = new byte[LightMap.LIGHT_MAP_PAGE_TILE_COUNT][LightMap.LIGHT_MAP_PAGE_TILE_COUNT];

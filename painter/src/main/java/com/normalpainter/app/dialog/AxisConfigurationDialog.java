@@ -11,7 +11,7 @@ import com.normalpainter.util.ui.dynamic.DynamicLabel;
 import com.normalpainter.util.ui.listener.ChangeAdapter;
 import com.normalpainter.util.ui.listener.ClickAdapter;
 
-import static com.normalpainter.util.Validation.ensureNotNull;
+import static com.winteralexander.gdx.utils.Validation.ensureNotNull;
 
 /**
  * Undocumented :(

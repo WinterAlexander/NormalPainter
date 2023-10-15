@@ -7,13 +7,14 @@ import com.badlogic.gdx.math.Vector3;
 import com.normalpainter.app.jpun.JPenListener;
 import com.normalpainter.app.jpun.JPun;
 import com.normalpainter.util.controller.ControllerAdapter;
-import com.normalpainter.util.math.MathUtil;
+import com.winteralexander.gdx.utils.math.MathUtil;
 
 import static com.badlogic.gdx.math.MathUtils.clamp;
 import static com.normalpainter.app.NormalPainterScreen.WORLD_HEIGHT;
 import static com.normalpainter.app.NormalPainterScreen.WORLD_WIDTH;
-import static com.normalpainter.util.Validation.ensureNotNull;
-import static com.normalpainter.util.math.MathUtil.pow2;
+import static com.winteralexander.gdx.utils.Validation.ensureNotNull;
+import static com.winteralexander.gdx.utils.math.MathUtil.inAABB;
+import static com.winteralexander.gdx.utils.math.MathUtil.pow2;
 
 /**
  * Part of the software responsible for selecting a normal map
@@ -130,7 +131,7 @@ public class ColorComponent implements ControllerAdapter, JPenListener
 		float rangeStartX = screen.camera.position.x + WORLD_WIDTH / 2f * screen.camera.zoom - rangeSize * 1.05f;
 		float rangeStartY = screen.camera.position.y + (WORLD_HEIGHT / 2f - 500f) * screen.camera.zoom - rangeSize * 1.05f;
 
-		boolean inBox = MathUtil.inBox(mousePos.x, mousePos.y, rangeStartX, rangeStartY, rangeSize);
+		boolean inBox = inAABB(mousePos.x, mousePos.y, rangeStartX, rangeStartY, rangeSize);
 
 		if(!inBox && !evenIfOut)
 			return false;

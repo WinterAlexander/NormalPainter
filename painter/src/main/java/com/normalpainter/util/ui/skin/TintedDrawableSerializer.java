@@ -7,8 +7,8 @@ import com.badlogic.gdx.utils.JsonValue;
 import com.normalpainter.util.ui.drawable.ShaderDrawable;
 import com.normalpainter.util.ui.drawable.TintedDrawable;
 
-import static com.normalpainter.util.ReflectionUtil.get;
-import static com.normalpainter.util.Validation.ensureNotNull;
+import static com.winteralexander.gdx.utils.ReflectionUtil.get;
+import static com.winteralexander.gdx.utils.Validation.ensureNotNull;
 
 /**
  * {@link TintedDrawable} serializer which supports fancy tinted drawables

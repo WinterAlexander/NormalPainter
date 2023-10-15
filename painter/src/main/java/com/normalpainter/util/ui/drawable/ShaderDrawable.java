@@ -4,7 +4,7 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 
-import static com.normalpainter.util.Validation.ensureNotNull;
+import static com.winteralexander.gdx.utils.Validation.ensureNotNull;
 
 /**
  * Drawable that uses a shader to render itself

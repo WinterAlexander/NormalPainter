@@ -9,10 +9,7 @@ import com.badlogic.gdx.utils.JsonValue;
 import com.badlogic.gdx.utils.SerializationException;
 import com.normalpainter.util.ui.drawable.TintedDrawable;
 
-import static com.normalpainter.util.ReflectionUtil.get;
-import static com.normalpainter.util.ReflectionUtil.getType;
-import static com.normalpainter.util.ReflectionUtil.has;
-import static com.normalpainter.util.ReflectionUtil.set;
+import static com.winteralexander.gdx.utils.ReflectionUtil.*;
 
 /**
  * Serializer that is able to lo

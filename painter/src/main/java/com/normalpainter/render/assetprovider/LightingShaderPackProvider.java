@@ -1,11 +1,11 @@
 package com.normalpainter.render.assetprovider;
 
-import com.normalpainter.util.CollectionUtil;
-import com.normalpainter.util.Validation;
 import com.normalpainter.render.AssetSupplier;
 import com.normalpainter.render.lighting.LightingShaderPack;
 
-import static com.normalpainter.util.CollectionUtil.mergeWithArray;
+import static com.winteralexander.gdx.utils.Validation.ensureNotNull;
+import static com.winteralexander.gdx.utils.collection.CollectionUtil.mergeWithArray;
+
 
 /**
  * {@link AssetProvider} for a {@link LightingShaderPack}
@@ -28,10 +28,10 @@ public class LightingShaderPackProvider implements AssetProvider<LightingShaderP
 	                                  String fragmentSourceName,
 	                                  String... flags)
 	{
-		Validation.ensureNotNull(baseName, "baseName");
-		Validation.ensureNotNull(vertexSourceName, "vertexSourceName");
-		Validation.ensureNotNull(fragmentSourceName, "fragmentSourceName");
-		Validation.ensureNotNull(flags, "flags");
+		ensureNotNull(baseName, "baseName");
+		ensureNotNull(vertexSourceName, "vertexSourceName");
+		ensureNotNull(fragmentSourceName, "fragmentSourceName");
+		ensureNotNull(flags, "flags");
 
 		this.baseName = baseName;
 		this.vertexSourceName = vertexSourceName;
@@ -58,11 +58,11 @@ public class LightingShaderPackProvider implements AssetProvider<LightingShaderP
 		assetSupplier.loadShader(baseName + LIGHTING_SUFFIX,
 				vertexSourceName,
 				fragmentSourceName,
-				CollectionUtil.mergeWithArray(flags, "LIGHTING_ENABLED"));
+				mergeWithArray(flags, "LIGHTING_ENABLED"));
 		assetSupplier.loadShader(baseName + COLOR_LIGHTING_SUFFIX,
 				vertexSourceName,
 				fragmentSourceName,
-				CollectionUtil.mergeWithArray(flags, "LIGHTING_ENABLED", "LIGHTING_COLOR_ENABLED"));
+				mergeWithArray(flags, "LIGHTING_ENABLED", "LIGHTING_COLOR_ENABLED"));
 	}
 
 	@Override

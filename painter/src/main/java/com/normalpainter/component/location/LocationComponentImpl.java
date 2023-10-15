@@ -3,7 +3,7 @@ package com.normalpainter.component.location;
 import com.badlogic.gdx.math.Vector2;
 import com.normalpainter.world.World;
 
-import static com.normalpainter.util.Validation.ensureNotNull;
+import static com.winteralexander.gdx.utils.Validation.ensureNotNull;
 
 /**
  * Simple implementation of LocationComponent using a vector for position.

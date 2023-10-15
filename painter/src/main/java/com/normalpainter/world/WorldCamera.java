@@ -4,8 +4,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.normalpainter.component.location.Localizable;
 import com.normalpainter.component.size.Sized;
 
-import static com.normalpainter.util.math.MathUtil.boxFullyInBox;
-import static com.normalpainter.util.math.MathUtil.inBox;
+import static com.winteralexander.gdx.utils.math.MathUtil.*;
 
 /**
  * Camera of a {@link World}
@@ -67,7 +66,7 @@ public interface WorldCamera
 		Vector2 size = getViewSize();
 		float zoom = getLogicalZoom();
 
-		return inBox(x, y, pos.x - size.x * zoom / 2f, pos.y - size.y * zoom / 2f, size.x * zoom, size.y * zoom);
+		return inAABB(x, y, pos.x - size.x * zoom / 2f, pos.y - size.y * zoom / 2f, size.x * zoom, size.y * zoom);
 	}
 
 	/**
@@ -85,7 +84,7 @@ public interface WorldCamera
 		Vector2 size = getViewSize();
 		float zoom = getLogicalZoom();
 
-		return boxFullyInBox(object.getX() + ((Sized)object).getOrigin().x,
+		return isAABBfullyInAABB(object.getX() + ((Sized)object).getOrigin().x,
 				object.getY() + ((Sized)object).getOrigin().y,
 				((Sized)object).getWidth(),
 				((Sized)object).getHeight(),

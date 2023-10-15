@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 import java.io.File;
 import java.util.function.Consumer;
 
-import static com.normalpainter.util.async.AsyncCaller.async;
+import static com.winteralexander.gdx.utils.async.AsyncCaller.async;
 
 /**
  * Swing implementation of FileSelector

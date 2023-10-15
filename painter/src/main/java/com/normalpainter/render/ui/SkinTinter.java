@@ -2,9 +2,9 @@ package com.normalpainter.render.ui;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.normalpainter.util.event.ListenableImpl;
+import com.winteralexander.gdx.utils.event.ListenableImpl;
 
-import static com.normalpainter.util.Validation.ensureNotNull;
+import static com.winteralexander.gdx.utils.Validation.ensureNotNull;
 
 /**
  * Tints the color of a {@link Skin} according to a {@link ColorPalette}

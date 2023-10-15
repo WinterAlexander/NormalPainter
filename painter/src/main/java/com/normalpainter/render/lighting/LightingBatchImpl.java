@@ -9,9 +9,9 @@ import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.math.Affine2;
 import com.badlogic.gdx.math.MathUtils;
 import com.normalpainter.render.AbstractSpriteBatch;
-import com.normalpainter.util.Validation;
+import com.winteralexander.gdx.utils.Validation;
 import com.normalpainter.lightmap.LightMaskGenerator;
-import com.normalpainter.render.UVTransform;
+import com.winteralexander.gdx.utils.gfx.UVTransform;
 
 import static com.badlogic.gdx.graphics.GL20.GL_TEXTURE0;
 

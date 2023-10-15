@@ -1,7 +1,7 @@
 package com.normalpainter.component.light;
 
 import com.badlogic.gdx.utils.Array;
-import com.normalpainter.util.Validation;
+import com.winteralexander.gdx.utils.Validation;
 
 /**
  * Simple {@link LightEmitterComponent} with a static list of light sources

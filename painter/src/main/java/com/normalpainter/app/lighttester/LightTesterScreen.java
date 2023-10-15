@@ -44,8 +44,8 @@ import com.normalpainter.render.AssetSupplier;
 import com.normalpainter.render.Assets;
 import com.normalpainter.render.lighting.LightRenderMode;
 import com.normalpainter.render.lighting.LightingBatchImpl;
-import com.normalpainter.util.gdx.GdxUtil;
-import com.normalpainter.util.log.NullLogger;
+import com.winteralexander.gdx.utils.input.InputUtil;
+import com.winteralexander.gdx.utils.log.NullLogger;
 import com.normalpainter.component.light.FireLightSource;
 import com.normalpainter.component.light.LavaLightSource;
 import com.normalpainter.component.light.LightEmitter;
@@ -57,7 +57,8 @@ import java.io.File;
 
 import static com.badlogic.gdx.graphics.GL20.GL_COLOR_BUFFER_BIT;
 import static com.normalpainter.util.gdx.Scene2dUtil.invalidateRecursively;
-import static com.normalpainter.util.math.NumberUtil.tryParseFloat;
+import static com.winteralexander.gdx.utils.math.NumberUtil.tryParseFloat;
+
 /**
  * Screen for {@link LightTesterApp} also used in {@link NormalPainterApp}
  * <p>
@@ -305,15 +306,15 @@ public class LightTesterScreen extends InputAdapter implements StageStackedScree
 	@Override
 	public void show()
 	{
-		GdxUtil.registerInput(stage);
-		GdxUtil.registerInput(this);
+		InputUtil.registerInput(stage);
+		InputUtil.registerInput(this);
 	}
 
 	@Override
 	public void hide()
 	{
-		GdxUtil.unregisterInput(stage);
-		GdxUtil.unregisterInput(this);
+		InputUtil.unregisterInput(stage);
+		InputUtil.unregisterInput(this);
 	}
 
 	@Override

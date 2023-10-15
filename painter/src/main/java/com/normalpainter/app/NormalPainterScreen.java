@@ -32,25 +32,23 @@ import com.badlogic.gdx.utils.I18NBundle;
 import com.badlogic.gdx.utils.ObjectMap;
 import com.kotcrab.vis.ui.widget.Menu;
 import com.normalpainter.app.dialog.OkayDialog;
-import com.normalpainter.render.ui.SkinTinter;
-import com.normalpainter.app.buffer.GdxPixmap;
-import com.normalpainter.app.buffer.RangedGdxBuffer;
-import com.normalpainter.util.ui.listener.ClickAdapter;
-import com.normalpainter.util.ui.skin.BetterSkinLoader.SkinParam;
+import com.normalpainter.app.lighttester.LightTesterScreen;
 import com.normalpainter.render.AssetSupplier;
 import com.normalpainter.render.Assets;
-import com.normalpainter.app.lighttester.LightTesterScreen;
-import com.normalpainter.util.ReflectionUtil;
-import com.normalpainter.util.gdx.GdxUtil;
-import com.normalpainter.util.log.Logger.LogLevel;
-import com.normalpainter.util.log.SimpleLogger;
+import com.normalpainter.render.ui.SkinTinter;
+import com.normalpainter.util.ui.listener.ClickAdapter;
+import com.normalpainter.util.ui.skin.BetterSkinLoader.SkinParam;
+import com.winteralexander.gdx.utils.ReflectionUtil;
+import com.winteralexander.gdx.utils.input.InputUtil;
+import com.winteralexander.gdx.utils.log.Logger.LogLevel;
+import com.winteralexander.gdx.utils.log.SimpleLogger;
 
 import java.io.File;
 
 import static com.badlogic.gdx.graphics.GL20.GL_COLOR_BUFFER_BIT;
+import static com.normalpainter.util.gdx.Scene2dUtil.invalidateRecursively;
 import static java.lang.Math.max;
 import static java.lang.Math.min;
-import static com.normalpainter.util.gdx.Scene2dUtil.invalidateRecursively;
 
 /**
  * {@link NormalPainterApp}'s main screen
@@ -1014,15 +1012,15 @@ public class NormalPainterScreen extends InputAdapter implements StageStackedScr
 	@Override
 	public void show()
 	{
-		GdxUtil.unregisterInput(this);
-		GdxUtil.registerInput(stage);
-		GdxUtil.registerInput(this);
+		InputUtil.unregisterInput(this);
+		InputUtil.registerInput(stage);
+		InputUtil.registerInput(this);
 	}
 
 	@Override
 	public void hide()
 	{
-		GdxUtil.unregisterInput(stage);
+		InputUtil.unregisterInput(stage);
 	}
 
 	@Override

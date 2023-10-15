@@ -4,6 +4,7 @@ allprojects {
     ext {
         appName = "NormalPainter"
         gdxVersion = '1.9.13'
+        gdxUtilsVersion = '3.0.1'
         junitVersion = '4.12'
         humbleVersion = '0.2.1'
         mysqlVersion = '5.1.46'
@@ -17,5 +18,6 @@ allprojects {
         mavenCentral()
         jcenter()
         mavenLocal()
+        maven { url 'https://jitpack.io' }
     }
 }

@@ -3,9 +3,9 @@ package com.normalpainter.util.ui.scrollpane;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.normalpainter.util.event.DelegatorListenable;
-import com.normalpainter.util.event.Listenable;
-import com.normalpainter.util.event.ListenableImpl;
+import com.winteralexander.gdx.utils.event.Listenable;
+import com.winteralexander.gdx.utils.event.ListenableDelegator;
+import com.winteralexander.gdx.utils.event.ListenableImpl;
 
 /**
  * {@link ScrollPane} that loads its content lazyly. Scrolling down triggers
@@ -17,7 +17,7 @@ import com.normalpainter.util.event.ListenableImpl;
  */
 public class LazyScrollPane
 		extends BetterScrollPane
-		implements DelegatorListenable<LazyScrollPaneListener>
+		implements ListenableDelegator<LazyScrollPaneListener>
 {
 	private final ListenableImpl<LazyScrollPaneListener> eventHandler = new ListenableImpl<>();
 

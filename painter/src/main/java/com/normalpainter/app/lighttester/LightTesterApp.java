@@ -2,7 +2,7 @@ package com.normalpainter.app.lighttester;
 
 import com.normalpainter.render.ScreenStackGame;
 
-import static com.normalpainter.util.Validation.ensureNotNull;
+import static com.winteralexander.gdx.utils.Validation.ensureNotNull;
 
 /**
  * Application to test dynamic lighting with a provided texture and normal

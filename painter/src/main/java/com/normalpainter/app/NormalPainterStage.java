@@ -23,11 +23,11 @@ import com.kotcrab.vis.ui.widget.*;
 import com.normalpainter.app.buffer.GdxPixmap;
 import com.normalpainter.app.dialog.*;
 import com.normalpainter.render.AssetSupplier;
-import com.normalpainter.util.math.MathUtil;
 import com.normalpainter.util.ui.BetterSlider;
 import com.normalpainter.util.ui.dynamic.*;
 import com.normalpainter.util.ui.listener.*;
 import com.normalpainter.util.ui.scrollpane.BetterScrollPane;
+import com.winteralexander.gdx.utils.math.MathUtil;
 import jpen.PenDevice;
 
 import javax.swing.*;

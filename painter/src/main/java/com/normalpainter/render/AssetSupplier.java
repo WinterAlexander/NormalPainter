@@ -6,8 +6,6 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.assets.loaders.ShaderProgramLoader.ShaderProgramParameter;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
@@ -15,15 +13,14 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.GdxRuntimeException;
 import com.badlogic.gdx.utils.ObjectMap;
 import com.badlogic.gdx.utils.OrderedMap;
-import com.normalpainter.util.ReflectionUtil;
-import com.normalpainter.util.Validation;
-import com.normalpainter.util.gdx.FontUtil;
-import com.normalpainter.util.log.Logger;
 import com.normalpainter.util.ui.skin.BetterSkinLoader;
 import com.normalpainter.util.ui.skin.DynamicFont;
+import com.winteralexander.gdx.utils.ReflectionUtil;
+import com.winteralexander.gdx.utils.Validation;
+import com.winteralexander.gdx.utils.gfx.FontUtil;
+import com.winteralexander.gdx.utils.log.Logger;
 
 import static java.lang.Integer.parseInt;
-import static com.normalpainter.util.ReflectionUtil.set;
 
 /**
  * Supplies assets in a convenient way

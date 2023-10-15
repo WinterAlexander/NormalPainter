@@ -1,8 +1,10 @@
 package com.normalpainter.component.light;
 
 import com.badlogic.gdx.math.Vector2;
-import com.normalpainter.util.math.MathUtil;
+import com.winteralexander.gdx.utils.math.MathUtil;
 import com.normalpainter.component.size.Sized;
+
+import static com.winteralexander.gdx.utils.math.MathUtil.inAABB;
 
 /**
  * Implementation of {@link LightObstructor} which simply blocks everything
@@ -21,7 +23,7 @@ public interface LightFullObstructor extends LightObstructor, Sized
 		float y = getObsStartY();
 		float w = getObsEndX() - x;
 		float h = getObsEndY() - y;
-		return MathUtil.inBox(position.x, position.y, x, y, w, h);
+		return inAABB(position.x, position.y, x, y, w, h);
 	}
 
 	@Override

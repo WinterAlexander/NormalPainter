@@ -1,6 +1,6 @@
 package com.normalpainter.world;
 
-import com.normalpainter.util.log.Logger;
+import com.winteralexander.gdx.utils.log.Logger;
 
 /**
  * Something a WorldObject can exist in

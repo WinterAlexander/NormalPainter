@@ -1,10 +1,10 @@
 package com.normalpainter.component.size;
 
 import com.badlogic.gdx.math.Vector2;
-import com.normalpainter.util.math.MathUtil;
 import com.normalpainter.component.location.Localizable;
 
-import static com.normalpainter.util.math.MathUtil.inBox;
+import static com.winteralexander.gdx.utils.math.MathUtil.doAABBCollideWithAABB;
+import static com.winteralexander.gdx.utils.math.MathUtil.inAABB;
 
 /**
  * Represents a WorldObject that has a size and an origin to locate its size
@@ -59,7 +59,7 @@ public interface Sized extends Localizable
 	}
 
 	default boolean contains(float x, float y) {
-		return MathUtil.inBox(x, y, getX() + getOrigin().x, getY() + getOrigin().y, getWidth(), getHeight());
+		return inAABB(x, y, getX() + getOrigin().x, getY() + getOrigin().y, getWidth(), getHeight());
 	}
 
 	default boolean contains(Vector2 point) {
@@ -67,7 +67,8 @@ public interface Sized extends Localizable
 	}
 
 	default boolean intersects(float x, float y, float width, float height) {
-		return MathUtil.boxCollidesBox(x, y, width, height, getX() + getOrigin().x, getY() + getOrigin().y, getWidth(), getHeight());
+		return doAABBCollideWithAABB(x, y, width, height, getX() + getOrigin().x, getY() + getOrigin().y, getWidth(),
+				getHeight());
 	}
 
 	default boolean intersects(Vector2 start, Vector2 size) {

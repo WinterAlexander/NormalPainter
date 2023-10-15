@@ -5,10 +5,10 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Predicate;
-import com.normalpainter.util.log.Logger;
-import com.normalpainter.util.log.NullLogger;
+import com.winteralexander.gdx.utils.log.Logger;
+import com.winteralexander.gdx.utils.log.NullLogger;
 
-import static com.normalpainter.util.Validation.ensureNotNull;
+import static com.winteralexander.gdx.utils.Validation.ensureNotNull;
 
 /**
  * LibGDX screen implemented with stack

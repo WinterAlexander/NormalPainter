@@ -10,9 +10,9 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.FrameBuffer;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.utils.IntMap;
-import com.normalpainter.util.gfx.YieldingFrameBuffer;
+import com.winteralexander.gdx.utils.gfx.YieldingFrameBuffer;
 
-import static com.normalpainter.util.Validation.ensureNotNull;
+import static com.winteralexander.gdx.utils.Validation.ensureNotNull;
 
 /**
  * Renders {@link LightMapPage}s using FBOs

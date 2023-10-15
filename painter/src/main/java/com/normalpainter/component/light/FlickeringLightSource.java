@@ -3,7 +3,7 @@ package com.normalpainter.component.light;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
-import com.normalpainter.util.Validation;
+import com.winteralexander.gdx.utils.Validation;
 
 import java.util.function.Supplier;
 

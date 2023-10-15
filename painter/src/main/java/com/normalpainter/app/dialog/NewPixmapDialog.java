@@ -13,7 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.normalpainter.util.ui.listener.ClickAdapter;
 import com.normalpainter.util.ui.listener.SubmitListener;
 import com.normalpainter.render.AssetSupplier;
-import com.normalpainter.util.math.NumberUtil;
+import com.winteralexander.gdx.utils.math.NumberUtil;
 import com.normalpainter.util.ui.AutoFocusTextFieldDialog;
 
 import java.util.function.Consumer;

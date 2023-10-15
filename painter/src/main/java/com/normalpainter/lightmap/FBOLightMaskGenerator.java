@@ -19,7 +19,7 @@ import com.normalpainter.component.light.LightSource;
 import static com.badlogic.gdx.graphics.GL20.GL_ONE;
 import static com.badlogic.gdx.graphics.GL20.GL_ZERO;
 import static com.badlogic.gdx.math.MathUtils.floor;
-import static com.normalpainter.util.Validation.ensureNotNull;
+import static com.winteralexander.gdx.utils.Validation.ensureNotNull;
 
 /**
  * FBO implementation of a {@link LightMaskGenerator}

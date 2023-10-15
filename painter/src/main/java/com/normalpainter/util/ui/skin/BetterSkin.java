@@ -18,7 +18,7 @@ import com.badlogic.gdx.utils.Json.ReadOnlySerializer;
 import com.badlogic.gdx.utils.JsonValue;
 import com.normalpainter.util.ui.drawable.MultiDrawable;
 
-import static com.normalpainter.util.Validation.ensureNotNull;
+import static com.winteralexander.gdx.utils.Validation.ensureNotNull;
 
 /**
  * Skin with serialization improvements to support custom fonts and other

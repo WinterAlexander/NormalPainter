@@ -2,7 +2,7 @@ package com.normalpainter.render.ui;
 
 import com.badlogic.gdx.graphics.Color;
 
-import static com.normalpainter.util.Validation.ensureNotNull;
+import static com.winteralexander.gdx.utils.Validation.ensureNotNull;
 
 /**
  * Palette of 5 colors used to color the UI of the entire game

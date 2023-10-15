@@ -10,7 +10,7 @@ import jpen.PenDevice;
 import jpen.PenManager;
 import jpen.event.PenListener;
 import jpen.owner.PenOwner;
-import com.normalpainter.util.event.ListenableImpl;
+import com.winteralexander.gdx.utils.event.ListenableImpl;
 
 import java.util.Collection;
 

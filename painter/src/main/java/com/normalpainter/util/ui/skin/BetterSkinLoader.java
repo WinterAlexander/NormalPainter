@@ -15,7 +15,7 @@ import com.badlogic.gdx.utils.Array;
 import com.normalpainter.render.AssetSupplier;
 import com.normalpainter.util.ui.skin.BetterSkinLoader.SkinParam;
 
-import static com.normalpainter.util.Validation.ensureNotNull;
+import static com.winteralexander.gdx.utils.Validation.ensureNotNull;
 
 /**
  * Loader that loads a skin that supports dynamic fonts and shaders

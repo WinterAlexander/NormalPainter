@@ -4,16 +4,16 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.IntMap;
 import com.badlogic.gdx.utils.IntMap.Entry;
 import com.normalpainter.component.render.RenderPriority;
-import com.normalpainter.util.io.CustomSerializable;
+import com.winteralexander.gdx.utils.io.Serializable;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-import static com.normalpainter.util.Validation.ensureNotNull;
-import static com.normalpainter.util.io.StreamUtil.readInt;
-import static com.normalpainter.util.io.StreamUtil.writeInt;
-import static com.normalpainter.util.math.MathUtil.negMod;
+import static com.winteralexander.gdx.utils.Validation.ensureNotNull;
+import static com.winteralexander.gdx.utils.io.StreamUtil.readInt;
+import static com.winteralexander.gdx.utils.io.StreamUtil.writeInt;
+import static com.winteralexander.gdx.utils.math.MathUtil.negMod;
 
 /**
  * Holds the back lighting intensity of a level for fast access
@@ -22,7 +22,7 @@ import static com.normalpainter.util.math.MathUtil.negMod;
  *
  * @author Alexander Winter
  */
-public class LightMap implements CustomSerializable
+public class LightMap implements Serializable
 {
 	public static final int LIGHT_MAP_PAGE_TILE_COUNT = 360; // min for editor : 360
 

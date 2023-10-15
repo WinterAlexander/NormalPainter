@@ -3,7 +3,7 @@ package com.normalpainter.app;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.normalpainter.util.ui.dynamic.DynamicUI;
 
-import static com.normalpainter.util.Validation.ensureNotNull;
+import static com.winteralexander.gdx.utils.Validation.ensureNotNull;
 
 /**
  * Fake actor used only to execute some runnable on update

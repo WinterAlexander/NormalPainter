@@ -18,6 +18,7 @@ repositories {
 
 dependencies {
     compile "com.badlogicgames.gdx:gdx:$gdxVersion"
+    compile "com.github.WinterAlexander:gdx-utils:$gdxUtilsVersion"
     compile "com.badlogicgames.gdx:gdx-controllers-desktop:$gdxVersion"
     compile "com.badlogicgames.gdx:gdx-backend-lwjgl:$gdxVersion"
     compile "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"

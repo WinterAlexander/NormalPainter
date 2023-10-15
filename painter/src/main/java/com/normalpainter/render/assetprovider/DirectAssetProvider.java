@@ -1,7 +1,7 @@
 package com.normalpainter.render.assetprovider;
 
 import com.badlogic.gdx.assets.AssetLoaderParameters;
-import com.normalpainter.util.Validation;
+import com.winteralexander.gdx.utils.Validation;
 import com.normalpainter.render.AssetSupplier;
 
 /**
